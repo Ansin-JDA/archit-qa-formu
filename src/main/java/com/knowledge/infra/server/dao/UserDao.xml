@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.knowledge.infra.server.dao.UserDao">  
+<select id="getUser" parameterType="com.knowledge.infra.server.model.User" resultType="com.knowledge.infra.server.model.User">  
+    SELECT uname,email,upassword,udescription FROM user WHERE username=#{eamil} AND password=#{password}  
+</select>  
+<insert id="addUser" parameterType="com.knowledge.infra.server.model.User" flushCache="true">  
+   INSERT INTO t_user (uname,email,upassword,udescription) VALUES (#{username},#{email},#{password},#{description})  
+</insert>  
+<update id="updateUser" parameterType="com.knowledge.infra.server.model.User">  
+    UPDATE user SET uname=#{username},email=#{email}, upassword=#{password},udescripton=#{description} WHERE id=#{id}  
+</update>  
+<delete id="deleteUser" parameterType="com.knowledge.infra.server.model.User">  
+    DELETE FROM user WHERE id=#{id}  
+</delete>  
+</mapper>

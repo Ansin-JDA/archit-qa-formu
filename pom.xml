@@ -17,6 +17,21 @@
         <artifactId>spring-web</artifactId>
         <version>4.0.3.RELEASE</version>
     </dependency>
+    
+    
+     <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+    </dependency>
+    
+    <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-jdbc</artifactId>  
+            <version>4.0.3.RELEASE</version>  
+        </dependency>
+        
+      
   
     <dependency>
         <groupId>org.springframework</groupId>
@@ -53,12 +68,54 @@
     <artifactId>mybatis</artifactId>  
     <version>3.1.1</version>  
   </dependency>  
+  
+    <dependency>  
+        <groupId>org.mybatis</groupId>  
+        <artifactId>mybatis-spring</artifactId>  
+       <version>1.2.2</version>
+    </dependency>  
    
   <dependency>  
    <groupId>mysql</groupId>  
    <artifactId>mysql-connector-java</artifactId>  
    <version>5.1.28</version>  
   </dependency> 
+  
+  
+  
+  	<!-- provided scope -->
+	<dependency>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>javax.servlet-api</artifactId>
+	  <version>3.0.1</version>
+	</dependency>
+	<dependency>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>jstl</artifactId>
+      <scope>compile</scope>
+      <version>1.1.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>javax.servlet.jsp</groupId>
+	  <artifactId>javax.servlet.jsp-api</artifactId>
+	  <version>2.3.1</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.slf4j</groupId>
+	  <artifactId>slf4j-api</artifactId>
+	  <version>1.7.7</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.slf4j</groupId>
+	  <artifactId>slf4j-log4j12</artifactId>
+	  <version>1.7.7</version>
+	</dependency>
+	<dependency>
+	  <groupId>taglibs</groupId>
+	  <artifactId>standard</artifactId>
+	  <scope>compile</scope>
+	  <version>1.1.0</version>
+	</dependency>
   
   </dependencies>
   
@@ -73,6 +130,24 @@
             </configuration>
         </plugin>
     </plugins> 
+    
+  <resources>
+        <resource>
+        <directory>src/main/java</directory>
+        <includes>
+        <include>**/*.xml</include>
+        </includes>
+        </resource>
+        <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+        <include>**/*.xml</include>
+        <include>**/*.properties</include>
+        </includes>
+        </resource>
+        </resources>
+    
+    
 </build>
   
   
