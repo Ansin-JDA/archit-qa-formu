@@ -1,0 +1,64 @@
+@import "clear.less";
+@import "base.less";
+
+@base-blue : #00a0e9;
+@logo-white : white;
+@navbar-height : 45px;
+
+.navbar{
+	background-color : @base-blue;
+	height : @navbar-height;
+	padding : 0 10px;
+}
+
+.navbar-item{
+	display : inline-block;
+	height : @navbar-height;
+	line-height: @navbar-height;
+	vertical-align: middle;
+}
+
+.navbar-link{
+	color : white;
+}
+
+.navbar-link-reverse{
+	color : black;
+}
+
+.logo{
+	color : @logo-white;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.navbar-dropdown{
+	background-color: @base-blue;
+	position : absolute;
+	left : 0px;
+}
+
+.navbar-dropdown-item{
+	border-bottom: solid lightblue 1px;
+}
+
+.navbar-item:hover .navbar-dropdown{
+	display : block;
+}
+
+.main-wrapper{
+	width : 980px;
+	margin : 0 auto;
+}
+
+.subnavbar{
+	height : 80px;
+	padding : 10px;
+}
+
+.main-guide{
+	background-color: lightblue;
+	height: 80px;
+	padding : 10px;
+}
+
