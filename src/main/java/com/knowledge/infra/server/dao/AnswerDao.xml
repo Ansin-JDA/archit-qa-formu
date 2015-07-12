@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.knowledge.infra.server.dao.AnswerDao"> 
+<insert id="addUser" parameterType="com.knowledge.infra.server.model.Answer" flushCache="true">  
+   INSERT INTO t_user (areferenceqid,atitle,acontent,acreateuserid,aupdateuserid) VALUES (#{areferenceqid},#{atitle},#{acontent},#{acreateuserid},#{aupdateuserid},#{alabel})  
+</insert>  
+<update id="updateUser" parameterType="com.knowledge.infra.server.model.Answer">  
+    UPDATE user SET areferenceqid =#{areferenceqid},  qtitle=#{qtitle},qcontent=#{qcontent},qcreateuserid=#{qcreateuserid},qupdateuserid=#{qupdateuserid} where answerid =#{answerid}
+</update>  
+<delete id="deleteUser" parameterType="com.knowledge.infra.server.model.Answer">  
+    DELETE FROM user WHERE answerid=#{answerid}  
+</delete>  
+</mapper>

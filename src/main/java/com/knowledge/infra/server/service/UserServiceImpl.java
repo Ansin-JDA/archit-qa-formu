@@ -12,6 +12,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 	
+	
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
 		userDao.addUser(user);
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
 	public void deleteUser(User user) {
 		// TODO Auto-generated method stub
-		userDao.deleteUser(user.getId());
+		userDao.deleteUser(user.getUserid());
 	}
 
 	public User getUser(User user) {

@@ -29,19 +29,45 @@ public class ForumServiceController {
 		return e.getMessage();
 	}
 
-    @RequestMapping(value = "/forum_service/Register", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+    @RequestMapping(value = "/forum_service/Register", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
     @ResponseBody
     public String Register(HttpServletRequest request) {
 
     	 User user=new User();
 	        //添加两条数据
-	     user.setId(1);
-	     user.setUsername("Jessica1");
-	     user.setPassword("123");
-	     userService.addUser(user);
+
     	
     	return "hehe";
 
     }
 	
+    
+    @RequestMapping(value = "/forum_service/Login", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
+    @ResponseBody
+    public String  Login(HttpServletRequest request) {
+
+    	 User user=new User();
+	        //添加两条数据
+         
+    	
+    	return "hehe";
+
+    }
+    
+    @RequestMapping(value = "/forum_service/Loginout", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
+    @ResponseBody
+    public String  Logout(HttpServletRequest request) {
+
+    	 User user=new User();
+	        //添加两条数据
+         
+    	
+    	return "hehe";
+
+    }
+    
+
+    
+    
+    
 }
