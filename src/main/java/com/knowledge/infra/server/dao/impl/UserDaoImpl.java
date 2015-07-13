@@ -22,12 +22,12 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao{
 
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().update(USER_DAO_NAMESPACE+"updateUser", user);
 	}
 
 	public void deleteUser(int UserId) {
 		// TODO Auto-generated method stub
-		
+		this.getSqlSession().delete(USER_DAO_NAMESPACE+"deleteUser", UserId);		
 	}
 
 	@Override
