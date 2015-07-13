@@ -48,7 +48,7 @@ create table t_answer(
 create table t_lablel(
 	labelid bigint(20) NOT NULL AUTO_INCREMENT,
 	labelname  varchar(20)  NOT NULL DEFAULT '' ,
-    ldecription varchar(20)  
+    ldecription varchar(20),
 	PRIMARY KEY (labelid)
 	);
 	
