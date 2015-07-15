@@ -13,7 +13,7 @@ public class GetServerResp implements Serializable {
 	private Object  data;
 	private String  msg;
 	
-	GetServerResp(){}
+	public GetServerResp(){}
 
 	public Integer getCode() {
 		return code;

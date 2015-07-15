@@ -1,5 +1,8 @@
 package com.knowledge.infra.server.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +32,9 @@ public class UserServiceImpl implements UserService {
 		userDao.deleteUser(user.getUserid());
 	}
 
-	public User getUser(User user) {
+	public List<User> getUser(Map<String,Object> param) {
 		// TODO Auto-generated method stub
-		return userDao.getUser(user);
+		return userDao.getUsers(param);
 	}
 
 }
