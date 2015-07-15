@@ -19,12 +19,12 @@ public class QuestionDaoImpl extends SqlSessionDaoSupport implements QuestionDao
 
 	public void updateQuestion(Question question) {
 		// TODO Auto-generated method stub
-		this.getSqlSession().update(QUESTION_DAO_NAMESPACE+"updateUser", question);
+		this.getSqlSession().update(QUESTION_DAO_NAMESPACE+"updateQuestion", question);
 	}
 
 	public void deleteQuestion(int QuestionId) {
 		// TODO Auto-generated method stub
-		this.getSqlSession().delete(QUESTION_DAO_NAMESPACE+"deleteUser", QuestionId);		
+		this.getSqlSession().delete(QUESTION_DAO_NAMESPACE+"deleteQuestion", QuestionId);		
 	}
 
 	@Override

@@ -5,5 +5,6 @@
 <configuration>  
     <mappers>  
         <mapper resource="com/knowledge/infra/server/dao/UserDao.xml"/>  
+        <mapper resource="com/knowledge/infra/server/dao/QuestionDao.xml"/>  
     </mappers>  
 </configuration>

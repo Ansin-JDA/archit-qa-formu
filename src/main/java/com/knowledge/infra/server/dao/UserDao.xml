@@ -4,12 +4,12 @@
 <mapper namespace="com.knowledge.infra.server.dao.UserDao">  
 
 <insert id="addUser" parameterType="com.knowledge.infra.server.model.User" flushCache="true">  
-   INSERT INTO t_user (uname,email,upassword,udescription) VALUES (#{username},#{email},#{password},#{description})  
+   INSERT INTO t_user (uname,email,upassword,udescription) VALUES (#{uname},#{email},#{upassword},#{udescription})  
 </insert>  
 <update id="updateUser" parameterType="com.knowledge.infra.server.model.User">  
-    UPDATE user SET uname=#{username},email=#{email}, upassword=#{password},udescripton=#{description} WHERE id=#{id}  
+    UPDATE t_user SET uname=#{uname},email=#{email}, upassword=#{upassword},udescription=#{udescription} WHERE userid=#{userid}  
 </update>  
 <delete id="deleteUser" parameterType="com.knowledge.infra.server.model.User">  
-    DELETE FROM user WHERE id=#{userid}  
+    DELETE FROM t_user WHERE userid=#{userid}  
 </delete>  
 </mapper>
