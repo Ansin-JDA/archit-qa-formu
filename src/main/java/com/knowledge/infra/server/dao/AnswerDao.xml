@@ -3,12 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="com.knowledge.infra.server.dao.AnswerDao"> 
 <insert id="addAnswer" parameterType="com.knowledge.infra.server.model.Answer" flushCache="true">  
-   INSERT INTO t_user (areferenceqid,atitle,acontent,acreateuserid,aupdateuserid) VALUES (#{areferenceqid},#{atitle},#{acontent},#{acreateuserid},#{aupdateuserid},#{alabel})  
+   INSERT INTO t_answer (areferenceqid,atitle,acontent,acreateuserid,aupdateuserid) VALUES (#{areferenceqid},#{atitle},#{acontent},#{acreateuserid},#{aupdateuserid})  
 </insert>  
 <update id="updateAnswer" parameterType="com.knowledge.infra.server.model.Answer">  
-    UPDATE user SET areferenceqid =#{areferenceqid},  qtitle=#{qtitle},qcontent=#{qcontent},qcreateuserid=#{qcreateuserid},qupdateuserid=#{qupdateuserid} where answerid =#{answerid}
+    UPDATE t_answer SET areferenceqid =#{areferenceqid},  atitle=#{atitle},acontent=#{acontent},acreateuserid=#{acreateuserid},aupdateuserid=#{aupdateuserid} where answerid =#{answerid}
 </update>  
 <delete id="deleteAnswer" parameterType="com.knowledge.infra.server.model.Answer">  
-    DELETE FROM user WHERE answerid=#{answerid}  
+    DELETE FROM t_answer WHERE answerid=#{answerid}  
 </delete>  
 </mapper>
