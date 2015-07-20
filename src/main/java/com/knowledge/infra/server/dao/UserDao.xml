@@ -2,7 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="com.knowledge.infra.server.dao.UserDao">  
-
+<select id="getUsersbyMap" parameterType = "java.util.Map" resultType="com.knowledge.infra.server.model.User">
+   SELECT userid,uname,email,upassword,udescription,ustaus,uscore,ulevel
+   FROM t_user
+   <where>
+     <if test="userid !=null ">  
+           userid=#{userid, jdbcType=INTEGER}    
+     </if> 
+      <if test="uname !=null ">  
+          AND uname=#{uname, jdbcType=VARCHAR} 
+     </if> 
+     <if test="upassword !=null ">  
+          AND upassword=#{upassword, jdbcType=VARCHAR} 
+     </if> 
+     <if test="ustaus !=null ">  
+          AND ustaus=#{ustaus, jdbcType=VARCHAR} 
+     </if> 
+     <if test="ulevel !=null ">  
+          AND ulevel=#{ulevel, jdbcType=VARCHAR} 
+     </if> 
+   </where>
+</select>
 <insert id="addUser" parameterType="com.knowledge.infra.server.model.User" flushCache="true">  
    INSERT INTO t_user (uname,email,upassword,udescription) VALUES (#{uname},#{email},#{upassword},#{udescription})  
 </insert>  
