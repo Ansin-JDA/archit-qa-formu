@@ -48,9 +48,8 @@ public class placeholder {
 	        user.setUname("Jessica1");
 	        user.setUdescription("testuser1");
 	        Map<String, Object> condition = new HashMap<String, Object>(2);
-	        condition.put("username", user.getUname());
+	        condition.put("uname", user.getUname());
 	        condition.put("udescription", user.getUdescription());
-	        //System.out.println(userDao.getUsers(condition));
 	        for (int i=0; i < userDao.getUsers(condition).size(); i++){
 	        	System.out.println(userDao.getUsers(condition).get(i));
 	        }	        
