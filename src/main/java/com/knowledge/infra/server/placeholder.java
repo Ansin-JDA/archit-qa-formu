@@ -1,5 +1,9 @@
 package com.knowledge.infra.server;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -41,12 +45,16 @@ public class placeholder {
 	        System.out.println("添加测试用户成功");
 	        
 	        //查询数据
-	        //user.setUname("Jessica");
-	        //user.setUpassword("123");
-	        //System.out.println(userDao.getUser(user).toString());
-	        //user.setUname("Jessica2");
-	        //user.setUpassword("123");
-	        //System.out.println(userDao.getUser(user).toString());
+	        user.setUname("Jessica1");
+	        user.setUdescription("testuser1");
+	        Map<String, Object> condition = new HashMap<String, Object>(2);
+	        condition.put("username", user.getUname());
+	        condition.put("udescription", user.getUdescription());
+	        //System.out.println(userDao.getUsers(condition));
+	        for (int i=0; i < userDao.getUsers(condition).size(); i++){
+	        	System.out.println(userDao.getUsers(condition).get(i));
+	        }	        
+	        System.out.println("===========查询测试用户成功==========");
 	        
 	        //修改数据
 	        user.setUserid(2);

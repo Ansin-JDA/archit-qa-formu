@@ -39,7 +39,7 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao{
 
 	public List<User> getUsers(Map<String, Object> param) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlSession().selectList(USER_DAO_NAMESPACE+"getUsersbyMap", param);
 	}
 	
 	
