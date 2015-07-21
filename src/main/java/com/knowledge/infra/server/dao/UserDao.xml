@@ -12,6 +12,9 @@
       <if test="uname !=null ">  
           AND uname=#{uname, jdbcType=VARCHAR} 
      </if> 
+      <if test="uemail !=null ">  
+          AND email=#{email, jdbcType=VARCHAR} 
+     </if> 
      <if test="upassword !=null ">  
           AND upassword=#{upassword, jdbcType=VARCHAR} 
      </if> 
