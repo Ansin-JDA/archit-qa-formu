@@ -1,5 +1,8 @@
 package com.knowledge.infra.server.dao.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.knowledge.infra.server.dao.QuestionDao;
 import com.knowledge.infra.server.model.Question;
+import com.knowledge.infra.server.model.User;
 
 @Component("questionDao")
 public class QuestionDaoImpl extends SqlSessionDaoSupport implements QuestionDao{
@@ -31,6 +35,11 @@ public class QuestionDaoImpl extends SqlSessionDaoSupport implements QuestionDao
 	@Autowired
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		super.setSqlSessionFactory(sqlSessionFactory);
+	}
+	
+	public List<Question> getUsers(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return this.getSqlSession().selectList(QUESTION_DAO_NAMESPACE+"getQuestionsbyMap", param);
 	}
 	
 	

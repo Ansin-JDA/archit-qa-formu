@@ -24,20 +24,11 @@
      <if test="qupdatetime !=null ">  
           AND qupdatetime=#{qupdatetime, jdbcType=VARCHAR} 
      </if> 
-     <if test="qgoodnum !=null ">  
-          AND qgoodnum=#{qgoodnum, jdbcType=INTEGER} 
-     </if> 
-     <if test="qbadnum !=null ">  
-          AND qbadnum=#{qbadnum, jdbcType=INTEGER} 
-     </if> 
      <if test="qlabel !=null ">  
           AND qlabel=#{qlabel, jdbcType=VARCHAR} 
      </if> 
      <if test="qstaus !=null ">  
           AND qstaus=#{qstaus, jdbcType=VARCHAR} 
-     </if> 
-     <if test="qviewtimes !=null ">  
-          AND qviewtimes=#{qviewtimes, jdbcType=INTEGER} 
      </if> 
    </where>
 </select>

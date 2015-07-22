@@ -1,5 +1,8 @@
 package com.knowledge.infra.server.dao.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,13 @@ public class ManagerDaoImpl extends SqlSessionDaoSupport implements ManagerDao{
 	@Autowired
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		super.setSqlSessionFactory(sqlSessionFactory);
+	}
+
+	public List<Manager> getManagers(Map<String, Object> param) {
+	
+			return this.getSqlSession().selectList(
+					MANAGER_DAO_NAMESPACE + "getManagersbyMap", param);
+	
 	}
 	
 	

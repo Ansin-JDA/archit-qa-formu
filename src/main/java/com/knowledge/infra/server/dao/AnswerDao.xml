@@ -27,12 +27,6 @@
      <if test="aupdatetime !=null ">  
           AND aupdatetime=#{aupdatetime, jdbcType=VARCHAR} 
      </if> 
-     <if test="agoodnum !=null ">  
-          AND agoodnum=#{agoodnum, jdbcType=INTEGER} 
-     </if> 
-     <if test="abadnum !=null ">  
-          AND abadnum=#{abadnum, jdbcType=INTEGER} 
-     </if> 
      <if test="astaus !=null ">  
           AND astaus=#{astaus, jdbcType=VARCHAR} 
      </if> 
