@@ -10,6 +10,6 @@ public interface UserService {
 	public void addUser(User user);
 	public void updateUser(User user);
 	public void deleteUser(User user);
-	public List<User> getUser(Map<String,Object> para);
+	public List<User> getUsers(Map<String,Object> para);
 	
 }

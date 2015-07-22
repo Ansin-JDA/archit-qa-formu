@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 		userDao.deleteUser(user.getUserid());
 	}
 
-	public List<User> getUser(Map<String,Object> param) {
+	public List<User> getUsers(Map<String,Object> param) {
 		// TODO Auto-generated method stub
 		return userDao.getUsers(param);
 	}

@@ -20,7 +20,11 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.knowledge.infra.server.controller.vo.GetServerResp;
 import com.knowledge.infra.server.dao.UserDao;
+import com.knowledge.infra.server.model.Answer;
+import com.knowledge.infra.server.model.Question;
 import com.knowledge.infra.server.model.User;
+import com.knowledge.infra.server.service.AnswerService;
+import com.knowledge.infra.server.service.QuestionService;
 import com.knowledge.infra.server.service.UserService;
 import com.knowledge.infra.server.util.JacksonUtils;
 
@@ -30,6 +34,11 @@ public class ForumServiceController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private QuestionService questionService;
+	
+	@Autowired
+	private AnswerService answerService;
 	
 	@ExceptionHandler
 	public String handleException(Exception e) {
@@ -92,7 +101,7 @@ public class ForumServiceController {
 		Map<String, Object> m = new HashMap<String, Object>(1);
 		m.put("email", email);
 		GetServerResp resp = new GetServerResp();
-		List<User> users = this.userService.getUser(m);
+		List<User> users = this.userService.getUsers(m);
 
 		if (users != null && users.isEmpty()) {
 
@@ -106,22 +115,23 @@ public class ForumServiceController {
 	}
 ///main page	
     
-	@RequestMapping(value = "/forum/main_page/", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/main_page", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public ModelAndView showMainPage(HttpServletRequest request) {
 
 		ModelAndView container=new ModelAndView();
+		
 	
 		return container ;
 
 	}
-
+	///	
+    
 	
-	
-//// forum question 
+//// quetionDetail page
 
     
-	@RequestMapping(value = "/forum/show_question_detail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/show_question_detail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public ModelAndView getQuestionDetail(HttpServletRequest request,@PathVariable int question_id) {
 
@@ -131,6 +141,32 @@ public class ForumServiceController {
 
 	}
 
+////search  page
+
+    
+	@RequestMapping(value = "/search_question", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@ResponseBody
+	public ModelAndView searchQuestion(HttpServletRequest request) {
+
+		ModelAndView container=new ModelAndView();
+	
+		return container ;
+
+	}
+	
+////success  page
+
+    
+	@RequestMapping(value = "/register_success", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@ResponseBody
+	public ModelAndView registerSucess(HttpServletRequest request) {
+
+		ModelAndView container=new ModelAndView();
+	
+		return container ;
+
+	}
+	
 	@RequestMapping(value = "/forum_service/get_more_answer/{question_id}/{pageindex}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public String getMoreAnswer(HttpServletRequest request,@PathVariable int question_id,@PathVariable int pageindex) {
@@ -156,9 +192,20 @@ public class ForumServiceController {
 	@ResponseBody
 	public String replyQuestion(HttpServletRequest request,@PathVariable int question_id) {
 
-		
-	
-		return "" ;
+	    Question question=this.questionService.getQuestion(question_id);
+	    GetServerResp resp = new GetServerResp();
+	    if(question == null )
+	    {
+	    	resp.setCode(400);
+	    	resp.setMsg("no question id matched");	
+	    	return JacksonUtils.toJson(resp);
+	    	
+	    }	    	
+	    String json= request.getParameter("replyContent");
+	    Answer  answer= JacksonUtils.fromJson(json, Answer.class);
+	    answerService.addAnswer(answer);
+	    resp.setCode(200);
+    	return JacksonUtils.toJson(resp);
 
 	}
 	
@@ -166,11 +213,21 @@ public class ForumServiceController {
 	@RequestMapping(value = "/forum_service/reply_answer/{answer_id}", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public String replyAnswer(HttpServletRequest request,@PathVariable int answer_id) {
-
-		
-	
-		return "" ;
-
+		Answer answer=this.answerService.getAnswer(answer_id);
+	    GetServerResp resp = new GetServerResp();
+	    if(answer == null )
+	    {
+	    	resp.setCode(400);
+	    	resp.setMsg("no answer id matched");	
+	    	return JacksonUtils.toJson(resp);
+	    	
+	    }	    	
+	    String json= request.getParameter("replyContent");
+	    Answer  answer1= JacksonUtils.fromJson(json, Answer.class);
+	    answer1.setAcontent(answer1.getAcontent()+"||@"+answer.getAcontent());
+	    answerService.addAnswer(answer);
+	    resp.setCode(200);
+    	return JacksonUtils.toJson(resp);
 	}
 	
 	@RequestMapping(value = "/forum_service/search_question/{keyword}", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
