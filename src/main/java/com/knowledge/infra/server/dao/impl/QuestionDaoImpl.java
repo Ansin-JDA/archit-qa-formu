@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.knowledge.infra.server.dao.QuestionDao;
 import com.knowledge.infra.server.model.Question;
-import com.knowledge.infra.server.model.User;
 
 @Component("questionDao")
 public class QuestionDaoImpl extends SqlSessionDaoSupport implements QuestionDao{
@@ -37,7 +36,7 @@ public class QuestionDaoImpl extends SqlSessionDaoSupport implements QuestionDao
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 	
-	public List<Question> getUsers(Map<String, Object> param) {
+	public List<Question> getQuestions(Map<String, Object> param) {
 		// TODO Auto-generated method stub
 		return this.getSqlSession().selectList(QUESTION_DAO_NAMESPACE+"getQuestionsbyMap", param);
 	}
