@@ -1,7 +1,6 @@
 package com.knowledge.infra.server;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
@@ -47,11 +46,11 @@ public class placeholder {
 	        //查询数据
 	        user.setUname("Jessica1");
 	        user.setUdescription("testuser1");
-	        Map<String, Object> condition = new HashMap<String, Object>(2);
-	        condition.put("uname", user.getUname());
-	        condition.put("udescription", user.getUdescription());
-	        for (int i=0; i < userDao.getUsers(condition).size(); i++){
-	        	System.out.println(userDao.getUsers(condition).get(i));
+	        Map<String, Object> condition1 = new HashMap<String, Object>(2);
+	        condition1.put("uname", user.getUname());
+	        condition1.put("udescription", user.getUdescription());
+	        for (int i=0; i < userDao.getUsers(condition1).size(); i++){
+	        	System.out.println(userDao.getUsers(condition1).get(i));
 	        }	        
 	        System.out.println("===========查询测试用户成功==========");
 	        
@@ -85,6 +84,15 @@ public class placeholder {
 	        System.out.println("添加测试问题成功");
 	        
 	        //查询数据 TODO
+	        question.setQtitle("testQuestion1");
+	        question.setQlabel("question 1");
+	        Map<String, Object> condition2 = new HashMap<String, Object>(2);
+	        condition2.put("qtitle", "testQuestion1");
+	        condition2.put("qlabel", "question 1");
+	        for (int i=0; i < questionDao.getQuestions(condition2).size(); i++) {
+	        	System.out.println(questionDao.getQuestions(condition2).get(i));
+	        }
+	        System.out.println("===========查询测试问题成功==========");
 	        
 	        //修改数据
 	        question.setQuestionid(2);
@@ -116,6 +124,15 @@ public class placeholder {
 		    System.out.println("添加测试回答成功");
 		    
 		    //查询数据   TODO
+		    answer.setAnswerid(1);
+		    answer.setAtitle("testAnswer 1");
+		    Map<String, Object> condition4 = new HashMap<String, Object>(2);
+		    condition4.put("answerid", 1);
+		    condition4.put("atitle", answer.getAtitle());
+	        for (int i=0; i < answerDao.getAnswers(condition4).size(); i++){
+	        	System.out.println(answerDao.getAnswers(condition4).get(i));
+	        }	        
+	        System.out.println("===========查询测试回答成功==========");
 		    
 		    //修改数据 (暂时还没有关于goodnum和badnum的更改！)
 		    answer.setAnswerid(2);
@@ -145,6 +162,15 @@ public class placeholder {
 		    System.out.println("添加测试Managers成功");
 		    
 		    //查询数据 TODO
+		    manager.setMname("test Manager 1");
+		    manager.setMemail("testManager1@zwvalley.com");
+		    Map<String, Object> condition3 = new HashMap<String, Object>(2);
+		    condition3.put("mname", manager.getMname());
+		    condition3.put("memail", manager.getMemail());
+	        for (int i=0; i < managerDao.getManagers(condition3).size(); i++){
+	        	System.out.println(managerDao.getManagers(condition3).get(i));
+	        }	        
+	        System.out.println("===========查询测试Manager成功==========");
 		    
 		    //修改数据
 		    manager.setManagerid(2);
