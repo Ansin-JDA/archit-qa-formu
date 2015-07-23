@@ -50,7 +50,9 @@ public class placeholder {
 	        condition1.put("uname", user.getUname());
 	        condition1.put("udescription", user.getUdescription());
 	        for (int i=0; i < userDao.getUsers(condition1).size(); i++){
-	        	System.out.println(userDao.getUsers(condition1).get(i));
+	        	System.out.println(userDao.getUsers(condition1).get(i).getUserid());
+	        	System.out.println(userDao.getUsers(condition1).get(i).getUname().toString());
+	        	System.out.println(userDao.getUsers(condition1).get(i).getEmail());
 	        }	        
 	        System.out.println("===========查询测试用户成功==========");
 	        
@@ -90,7 +92,9 @@ public class placeholder {
 	        condition2.put("qtitle", "testQuestion1");
 	        condition2.put("qlabel", "question 1");
 	        for (int i=0; i < questionDao.getQuestions(condition2).size(); i++) {
-	        	System.out.println(questionDao.getQuestions(condition2).get(i));
+	        	System.out.println(questionDao.getQuestions(condition2).get(i).getQuestionid());
+	        	System.out.println(questionDao.getQuestions(condition2).get(i).getQtitle());
+	        	System.out.println(questionDao.getQuestions(condition2).get(i).getQcontent());
 	        }
 	        System.out.println("===========查询测试问题成功==========");
 	        
@@ -130,7 +134,9 @@ public class placeholder {
 		    condition4.put("answerid", 1);
 		    condition4.put("atitle", answer.getAtitle());
 	        for (int i=0; i < answerDao.getAnswers(condition4).size(); i++){
-	        	System.out.println(answerDao.getAnswers(condition4).get(i));
+	        	System.out.println(answerDao.getAnswers(condition4).get(i).getAnswerid());
+	        	System.out.println(answerDao.getAnswers(condition4).get(i).getAtitle());
+	        	System.out.println(answerDao.getAnswers(condition4).get(i).getAcontent());
 	        }	        
 	        System.out.println("===========查询测试回答成功==========");
 		    
@@ -168,7 +174,9 @@ public class placeholder {
 		    condition3.put("mname", manager.getMname());
 		    condition3.put("memail", manager.getMemail());
 	        for (int i=0; i < managerDao.getManagers(condition3).size(); i++){
-	        	System.out.println(managerDao.getManagers(condition3).get(i));
+	        	System.out.println(managerDao.getManagers(condition3).get(i).getManagerid());
+	        	System.out.println(managerDao.getManagers(condition3).get(i).getMname());
+	        	System.out.println(managerDao.getManagers(condition3).get(i).getMemail());
 	        }	        
 	        System.out.println("===========查询测试Manager成功==========");
 		    
