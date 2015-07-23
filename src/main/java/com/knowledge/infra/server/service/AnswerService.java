@@ -11,6 +11,7 @@ public interface AnswerService {
 	public void updateAnswer(Answer Answer);
 	public void deleteAnswer(Answer Answer);
 	public List<Answer> getAnswers(Map<String,Object> para);
-	public Answer getAnswer(int answer_id);
+	public Answer getAnswer(int answerid);
+	public void voteAnswer(int answerid, int status);
 
 }

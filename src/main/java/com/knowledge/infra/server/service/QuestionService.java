@@ -13,6 +13,7 @@ public interface QuestionService {
 		public void deleteQuestion(Question question);
 		public List<Question> getQuestions(Map<String,Object> para);
 		public Question getQuestion(int questionId);
+		void voteQuestion(int questionid, int status);
 
 	
 

@@ -132,7 +132,7 @@ public class ForumServiceController {
 
     
 	@RequestMapping(value = "/show_question_detail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
-	@ResponseBody
+
 	public ModelAndView getQuestionDetail(HttpServletRequest request,@PathVariable int question_id) {
 
 		ModelAndView container=new ModelAndView();
@@ -145,7 +145,6 @@ public class ForumServiceController {
 
     
 	@RequestMapping(value = "/search_question", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
-	@ResponseBody
 	public ModelAndView searchQuestion(HttpServletRequest request) {
 
 		ModelAndView container=new ModelAndView();
@@ -179,13 +178,45 @@ public class ForumServiceController {
 	
 	@RequestMapping(value = "/forum_service/vote_answer/{answer_id}/{status}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
-	public String voteAnswer(HttpServletRequest request,@PathVariable int question_id,@PathVariable int status) {
+	public String voteAnswer(HttpServletRequest request,@PathVariable int answer_id,@PathVariable int status) {
 
-		
-	
-		return "" ;
+	    Answer answer=this.answerService.getAnswer(answer_id);
+	    GetServerResp resp = new GetServerResp();
+	    if(answer == null )
+	    {
+	    	resp.setCode(400);
+	    	resp.setMsg("no answer id matched");	
+	    	return JacksonUtils.toJson(resp);
+	    	
+	    }	    	 
+		answerService.voteAnswer(answer_id,status);
+	    resp.setCode(200);
+    	return JacksonUtils.toJson(resp);
+
 
 	}
+	
+	@RequestMapping(value = "/forum_service/vote_answer/{answer_id}/{status}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@ResponseBody
+	public String voteQuestion(HttpServletRequest request,@PathVariable int question_id,@PathVariable int status) {
+
+	    Question question=this.questionService.getQuestion(question_id);
+	    GetServerResp resp = new GetServerResp();
+	    if(question == null )
+	    {
+	    	resp.setCode(400);
+	    	resp.setMsg("no answer id matched");	
+	    	return JacksonUtils.toJson(resp);
+	    	
+	    }	    	 
+	    questionService.voteQuestion(question_id, status);
+	    resp.setCode(200);
+    	return JacksonUtils.toJson(resp);
+
+
+	}
+	
+	
 	
 	
 	@RequestMapping(value = "/forum_service/reply_question/{question_id}", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
