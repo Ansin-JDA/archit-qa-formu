@@ -1,11 +1,14 @@
 package com.knowledge.infra.server.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.knowledge.infra.server.dao.QuestionDao;
 import com.knowledge.infra.server.model.Question;
 @Service 
 public class QuestionServiceImpl implements QuestionService{
@@ -13,29 +16,38 @@ public class QuestionServiceImpl implements QuestionService{
 	private static Map<Integer, Integer> goodVote = new ConcurrentHashMap<Integer, Integer>();
 	private static Map<Integer, Integer> badVote = new ConcurrentHashMap<Integer, Integer>();
 	
-	public void addQuestion(Question Question) {
+	@Autowired
+	private QuestionDao questionDao;
+	
+	
+	public void addQuestion(Question question) {
 		// TODO Auto-generated method stub
+		questionDao.addQuestion(question);
 		
 	}
 
-	public void updateQuestion(Question Question) {
+	public void updateQuestion(Question question) {
 		// TODO Auto-generated method stub
+		questionDao.updateQuestion(question);
 		
 	}
 
-	public void deleteQuestion(Question Question) {
+	public void deleteQuestion(Question question) {
 		// TODO Auto-generated method stub
+		questionDao.deleteQuestion(question.getQuestionid());
 		
 	}
 
 	public List<Question> getQuestions(Map<String, Object> para) {
 		// TODO Auto-generated method stub
-		return null;
+		return questionDao.getQuestions(para);
 	}
 
 	public Question getQuestion(int questionId) {
 		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> condition = new HashMap<String, Object>(1);
+		condition.put("questionId", questionId);
+		return questionDao.getQuestions(condition).get(0);
 	}
 
 	public void voteQuestion(int questionid, int status) {
