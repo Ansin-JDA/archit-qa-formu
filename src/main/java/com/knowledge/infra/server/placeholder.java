@@ -43,6 +43,7 @@ public class placeholder {
 	        userDao.addUser(user);
 	        System.out.println("添加测试用户成功");
 	        
+	        
 	        //查询数据
 	        user.setUname("Jessica1");
 	        user.setUdescription("testuser1");

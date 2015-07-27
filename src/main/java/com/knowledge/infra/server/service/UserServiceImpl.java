@@ -1,5 +1,6 @@
 package com.knowledge.infra.server.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,13 @@ public class UserServiceImpl implements UserService {
 	public List<User> getUsers(Map<String,Object> param) {
 		// TODO Auto-generated method stub
 		return userDao.getUsers(param);
+	}
+	
+	public User getUserbyId(Integer id) {
+		// TODO Auto-generated method stub
+		Map<String,Object> param = new HashMap<String,Object>(1);
+		param.put("userid", id);
+		return userDao.getUsers(param).get(0);
 	}
 
 }

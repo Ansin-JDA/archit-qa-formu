@@ -29,7 +29,7 @@
         <property name="username" >
         <value>root</value>
         </property>
-        <property name="password" value="root"/>
+       <!--  <property name="password" value="root"/>-->
         <property name="url" >
         <value>jdbc:mysql://localhost:3306/knowledge_forum?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true</value>
         </property>

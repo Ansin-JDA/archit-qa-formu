@@ -11,5 +11,6 @@ public interface UserService {
 	public void updateUser(User user);
 	public void deleteUser(User user);
 	public List<User> getUsers(Map<String,Object> para);
+	public User getUserbyId(Integer id);
 	
 }

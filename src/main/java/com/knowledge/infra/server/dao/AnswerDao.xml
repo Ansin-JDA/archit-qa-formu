@@ -33,6 +33,9 @@
    </where>
 </select>
 <insert id="addAnswer" parameterType="com.knowledge.infra.server.model.Answer" flushCache="true">  
+   <selectKey resultType="java.lang.Integer" keyProperty="answerid" order="AFTER" >
+    SELECT @@IDENTITY
+  </selectKey>  
    INSERT INTO t_answer (areferenceqid,atitle,acontent,acreateuserid,aupdateuserid) VALUES (#{areferenceqid},#{atitle},#{acontent},#{acreateuserid},#{aupdateuserid})  
 </insert>  
 <update id="updateAnswer" parameterType="com.knowledge.infra.server.model.Answer">  

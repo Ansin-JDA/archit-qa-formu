@@ -1,44 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="com.knowledge.infra.server.dao.QuestionDao"> 
-<select id="getQuestionsbyMap" parameterType = "java.util.Map" resultType="com.knowledge.infra.server.model.Question">
-   SELECT questionid,qtitle,qcontent,qcreateuserid,qupdateuserid,qcreatetime,qupdatetime,qgoodnum,qbadnum,qlabel,qstaus,qviewtimes
-   FROM t_question
-   <where>
-     <if test="questionid !=null ">  
-          questionid=#{questionid, jdbcType=INTEGER}    
-     </if> 
-      <if test="qtitle !=null ">  
-          AND qtitle=#{qtitle, jdbcType=VARCHAR} 
-     </if> 
-     <if test="qcreateuserid !=null ">  
-          AND qcreateuserid=#{qcreateuserid, jdbcType=VARCHAR} 
-     </if> 
-     <if test="qupdateuserid !=null ">  
-          AND qupdateuserid=#{qupdateuserid, jdbcType=VARCHAR} 
-     </if> 
-     <if test="qcreatetime !=null ">  
-          AND qcreatetime=#{qcreatetime, jdbcType=VARCHAR} 
-     </if> 
-     <if test="qupdatetime !=null ">  
-          AND qupdatetime=#{qupdatetime, jdbcType=VARCHAR} 
-     </if> 
-     <if test="qlabel !=null ">  
-          AND qlabel=#{qlabel, jdbcType=VARCHAR} 
-     </if> 
-     <if test="qstaus !=null ">  
-          AND qstaus=#{qstaus, jdbcType=VARCHAR} 
-     </if> 
-   </where>
-</select>
-<insert id="addQuestion" parameterType="com.knowledge.infra.server.model.Question" flushCache="true">  
-   INSERT INTO t_question (qtitle,qcontent,qcreateuserid,qupdateuserid,qlabel) VALUES (#{qtitle},#{qcontent},#{qcreateuserid},#{qupdateuserid},#{qlabel})  
-</insert>  
-<update id="updateQuestion" parameterType="com.knowledge.infra.server.model.Question">  
-    UPDATE t_question SET qtitle=#{qtitle},qcontent=#{qcontent},qcreateuserid=#{qcreateuserid},qupdateuserid=#{qupdateuserid},qlabel=#{qlabel} where questionid =#{questionid}
-</update>  
-<delete id="deleteQuestion" parameterType="com.knowledge.infra.server.model.Question">  
-    DELETE FROM t_question WHERE questionid=#{questionid}  
-</delete> 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.knowledge.infra.server.dao.QuestionDao">
+	<select id="getQuestionsbyMap" parameterType="java.util.Map"
+		resultType="com.knowledge.infra.server.model.Question">
+		SELECT
+		questionid,qtitle,qcontent,qcreateuserid,qupdateuserid,qcreatetime,qupdatetime,qgoodnum,qbadnum,qlabel,qstaus,qviewtimes
+		FROM t_question
+		<where>
+			<if test="questionid !=null ">
+				questionid=#{questionid, jdbcType=INTEGER}
+			</if>
+			<if test="qtitle !=null ">
+				AND qtitle=#{qtitle, jdbcType=VARCHAR}
+			</if>
+			<if test="qcreateuserid !=null ">
+				AND qcreateuserid=#{qcreateuserid, jdbcType=VARCHAR}
+			</if>
+			<if test="qupdateuserid !=null ">
+				AND qupdateuserid=#{qupdateuserid, jdbcType=VARCHAR}
+			</if>
+			<if test="qcreatetime !=null ">
+				AND qcreatetime=#{qcreatetime, jdbcType=VARCHAR}
+			</if>
+			<if test="qupdatetime !=null ">
+				AND qupdatetime=#{qupdatetime, jdbcType=VARCHAR}
+			</if>
+			<if test="qlabel !=null ">
+				AND qlabel=#{qlabel, jdbcType=VARCHAR}
+			</if>
+			<if test="qstaus !=null ">
+				AND qstaus=#{qstaus, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="getMoreQuestionsbyLastId" parameterType="java.util.Map"
+		resultType="com.knowledge.infra.server.model.Question">
+		SELECT
+		questionid,qtitle,qcontent,qcreateuserid,qupdateuserid,qcreatetime,qupdatetime,qgoodnum,qbadnum,qlabel,qstaus,qviewtimes
+		FROM t_question
+		<where>
+			<if test="questionid !=null ">
+				questionid!=#{questionid, jdbcType=INTEGER}
+			</if>
+			<if test="qupdatetime !=null ">
+				AND qupdatetime &lt;=#{qupdatetime, jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY qupdatetime
+		<if test="limitLen !=null ">
+				LIMIT #{limitLen}
+	    </if>
+	</select>
+
+
+	<insert id="addQuestion" parameterType="com.knowledge.infra.server.model.Question"
+		flushCache="true">
+		<selectKey resultType="java.lang.Integer" keyProperty="questionid"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+		INSERT INTO t_question
+		(qtitle,qcontent,qcreateuserid,qupdateuserid,qlabel) VALUES
+		(#{qtitle},#{qcontent},#{qcreateuserid},#{qupdateuserid},#{qlabel})
+	</insert>
+	<update id="updateQuestion" parameterType="com.knowledge.infra.server.model.Question">
+		UPDATE t_question SET
+		qtitle=#{qtitle},qcontent=#{qcontent},qcreateuserid=#{qcreateuserid},qupdateuserid=#{qupdateuserid},qlabel=#{qlabel}
+		where questionid =#{questionid}
+	</update>
+	<delete id="deleteQuestion" parameterType="com.knowledge.infra.server.model.Question">
+		DELETE FROM t_question WHERE questionid=#{questionid}
+	</delete>
 </mapper>

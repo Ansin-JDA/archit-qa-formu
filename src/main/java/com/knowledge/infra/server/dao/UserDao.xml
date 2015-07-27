@@ -26,7 +26,10 @@
      </if> 
    </where>
 </select>
-<insert id="addUser" parameterType="com.knowledge.infra.server.model.User" flushCache="true">  
+<insert id="addUser" parameterType="com.knowledge.infra.server.model.User" flushCache="true">
+ <selectKey resultType="java.lang.Integer" keyProperty="userid" order="AFTER" >
+    SELECT @@IDENTITY
+  </selectKey>  
    INSERT INTO t_user (uname,email,upassword,udescription) VALUES (#{uname},#{email},#{upassword},#{udescription})  
 </insert>  
 <update id="updateUser" parameterType="com.knowledge.infra.server.model.User">  
