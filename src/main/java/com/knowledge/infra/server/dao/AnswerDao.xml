@@ -1,47 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="com.knowledge.infra.server.dao.AnswerDao"> 
-<select id="getAnswersbyMap" parameterType = "java.util.Map" resultType="com.knowledge.infra.server.model.Answer">
-   SELECT answerid,areferenceqid,atitle,acontent,acreateuserid,aupdateuserid,acreatetime,aupdatetime,agoodnum,abadnum,astaus
-   FROM t_answer
-   <where>
-     <if test="answerid !=null ">  
-           answerid=#{answerid, jdbcType=INTEGER}    
-     </if> 
-      <if test="areferenceqid !=null ">  
-          AND areferenceqid=#{areferenceqid, jdbcType=VARCHAR} 
-     </if> 
-      <if test="atitle !=null ">  
-          AND atitle=#{atitle, jdbcType=VARCHAR} 
-     </if> 
-     <if test="acreateuserid !=null ">  
-          AND acreateuserid=#{acreateuserid, jdbcType=VARCHAR} 
-     </if> 
-     <if test="aupdateuserid !=null ">  
-          AND aupdateuserid=#{aupdateuserid, jdbcType=VARCHAR} 
-     </if> 
-     <if test="acreatetime !=null ">  
-          AND acreatetime=#{acreatetime, jdbcType=VARCHAR} 
-     </if> 
-     <if test="aupdatetime !=null ">  
-          AND aupdatetime=#{aupdatetime, jdbcType=VARCHAR} 
-     </if> 
-     <if test="astaus !=null ">  
-          AND astaus=#{astaus, jdbcType=VARCHAR} 
-     </if> 
-   </where>
-</select>
-<insert id="addAnswer" parameterType="com.knowledge.infra.server.model.Answer" flushCache="true">  
-   <selectKey resultType="java.lang.Integer" keyProperty="answerid" order="AFTER" >
-    SELECT @@IDENTITY
-  </selectKey>  
-   INSERT INTO t_answer (areferenceqid,atitle,acontent,acreateuserid,aupdateuserid) VALUES (#{areferenceqid},#{atitle},#{acontent},#{acreateuserid},#{aupdateuserid})  
-</insert>  
-<update id="updateAnswer" parameterType="com.knowledge.infra.server.model.Answer">  
-    UPDATE t_answer SET areferenceqid =#{areferenceqid},  atitle=#{atitle},acontent=#{acontent},acreateuserid=#{acreateuserid},aupdateuserid=#{aupdateuserid} where answerid =#{answerid}
-</update>  
-<delete id="deleteAnswer" parameterType="com.knowledge.infra.server.model.Answer">  
-    DELETE FROM t_answer WHERE answerid=#{answerid}  
-</delete>  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.knowledge.infra.server.dao.AnswerDao">
+	<select id="getAnswersbyMap" parameterType="java.util.Map"
+		resultType="com.knowledge.infra.server.model.Answer">
+		SELECT
+		answerid,areferenceqid,atitle,acontent,acreateuserid,aupdateuserid,acreatetime,aupdatetime,agoodnum,abadnum,astaus
+		FROM t_answer
+		<where>
+			<if test="answerid !=null ">
+				answerid=#{answerid, jdbcType=INTEGER}
+			</if>
+			<if test="areferenceqid !=null ">
+				AND areferenceqid=#{areferenceqid, jdbcType=VARCHAR}
+			</if>
+			<if test="atitle !=null ">
+				AND atitle=#{atitle, jdbcType=VARCHAR}
+			</if>
+			<if test="acreateuserid !=null ">
+				AND acreateuserid=#{acreateuserid, jdbcType=VARCHAR}
+			</if>
+			<if test="aupdateuserid !=null ">
+				AND aupdateuserid=#{aupdateuserid, jdbcType=VARCHAR}
+			</if>
+			<if test="acreatetime !=null ">
+				AND acreatetime=#{acreatetime, jdbcType=VARCHAR}
+			</if>
+			<if test="aupdatetime !=null ">
+				AND aupdatetime=#{aupdatetime, jdbcType=VARCHAR}
+			</if>
+			<if test="astaus !=null ">
+				AND astaus=#{astaus, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+
+	<select id="getMoreAnswersbyLastId" parameterType="java.util.Map"
+		resultType="com.knowledge.infra.server.model.Question">
+		SELECT
+		answerid,areferenceqid,atitle,acontent,acreateuserid,aupdateuserid,acreatetime,aupdatetime,agoodnum,abadnum,astaus
+		FROM t_answer
+		<where>
+			<if test="answerid !=null ">
+				answerid!=#{answerid, jdbcType=INTEGER}
+			</if>
+			<if test="areferenceqid !=null ">
+				AND areferenceqid ==#{areferenceqid, jdbcType=INTEGER}
+			</if>
+			<if test="aupdatetime !=null ">
+				AND aupdatetime &lt;=#{aupdatetime, jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY aupdatetime
+		<if test="limitLen !=null ">
+			LIMIT #{limitLen}
+		</if>
+	</select>
+
+
+
+
+	<insert id="addAnswer" parameterType="com.knowledge.infra.server.model.Answer"
+		flushCache="true">
+		<selectKey resultType="java.lang.Integer" keyProperty="answerid"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+		INSERT INTO t_answer
+		(areferenceqid,atitle,acontent,acreateuserid,aupdateuserid) VALUES
+		(#{areferenceqid},#{atitle},#{acontent},#{acreateuserid},#{aupdateuserid})
+	</insert>
+	<update id="updateAnswer" parameterType="com.knowledge.infra.server.model.Answer">
+		UPDATE t_answer SET
+		areferenceqid =#{areferenceqid},
+		atitle=#{atitle},acontent=#{acontent},acreateuserid=#{acreateuserid},aupdateuserid=#{aupdateuserid}
+		where answerid =#{answerid}
+	</update>
+	<delete id="deleteAnswer" parameterType="com.knowledge.infra.server.model.Answer">
+		DELETE FROM t_answer
+		WHERE answerid=#{answerid}
+	</delete>
 </mapper>

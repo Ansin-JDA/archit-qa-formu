@@ -1,5 +1,7 @@
 package com.knowledge.infra.server.dao.impl;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,6 +49,18 @@ public class AnswerDaoImpl extends SqlSessionDaoSupport implements AnswerDao {
 		return this.getSqlSession().selectList(
 				ANSWER_DAO_NAMESPACE + "getAnswersbyMap", param);
 
+	}
+
+	public List<Answer> getMoreAnswersbyLastId(int questionId, int lastAnswerId, Date lastTime, int len) {
+		// TODO Auto-generated method stub
+		Map<String,Object> param = new HashMap<String,Object>();
+		param.put("answerid", lastAnswerId);
+		param.put("aupdatetime", lastTime);
+		param.put("limitLen", len);
+		param.put("areferenceqid", questionId);
+		return this.getSqlSession().selectList(
+				ANSWER_DAO_NAMESPACE + "getMoreAnswersbyLastId", param);
+		
 	}
 
 }
