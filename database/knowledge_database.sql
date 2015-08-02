@@ -35,7 +35,7 @@ create table t_answer(
 	areferenceqid bigint(20) NOT NULL  ,
 	atitle  varchar(50)  NOT NULL DEFAULT '' ,
 	acontent varchar(500) NOT NULL DEFAULT '',
-	aqcreateuserid bigint(20) NOT NULL ,
+	acreateuserid bigint(20) NOT NULL ,
 	aupdateuserid bigint(20) NOT NULL ,
 	acreatetime timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	aupdatetime timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

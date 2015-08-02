@@ -1,5 +1,9 @@
 package com.knowledge.infra.server.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +33,16 @@ public class UserServiceImpl implements UserService {
 		userDao.deleteUser(user.getUserid());
 	}
 
-	public User getUser(User user) {
+	public List<User> getUsers(Map<String,Object> param) {
 		// TODO Auto-generated method stub
-		return userDao.getUser(user);
+		return userDao.getUsers(param);
+	}
+	
+	public User getUserbyId(Integer id) {
+		// TODO Auto-generated method stub
+		Map<String,Object> param = new HashMap<String,Object>(1);
+		param.put("userid", id);
+		return userDao.getUsers(param).get(0);
 	}
 
 }

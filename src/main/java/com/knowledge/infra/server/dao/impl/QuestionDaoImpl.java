@@ -1,11 +1,17 @@
 package com.knowledge.infra.server.dao.impl;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.knowledge.infra.server.dao.QuestionDao;
+import com.knowledge.infra.server.model.Answer;
 import com.knowledge.infra.server.model.Question;
 
 @Component("questionDao")
@@ -19,12 +25,12 @@ public class QuestionDaoImpl extends SqlSessionDaoSupport implements QuestionDao
 
 	public void updateQuestion(Question question) {
 		// TODO Auto-generated method stub
-		this.getSqlSession().update(QUESTION_DAO_NAMESPACE+"updateUser", question);
+		this.getSqlSession().update(QUESTION_DAO_NAMESPACE+"updateQuestion", question);
 	}
 
 	public void deleteQuestion(int QuestionId) {
 		// TODO Auto-generated method stub
-		this.getSqlSession().delete(QUESTION_DAO_NAMESPACE+"deleteUser", QuestionId);		
+		this.getSqlSession().delete(QUESTION_DAO_NAMESPACE+"deleteQuestion", QuestionId);		
 	}
 
 	@Override
@@ -33,6 +39,25 @@ public class QuestionDaoImpl extends SqlSessionDaoSupport implements QuestionDao
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 	
+	public List<Question> getQuestions(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return this.getSqlSession().selectList(QUESTION_DAO_NAMESPACE+"getQuestionsbyMap", param);
+	}
+
+	public List<Question> getMoreQuestionsbyLastId(int lastQuestionId, Date lastTime, int len) {
+		// TODO Auto-generated method stub
+		Map<String,Object> param = new HashMap<String,Object>();
+		param.put("questionid", lastQuestionId);
+		param.put("qupdatetime", lastTime);
+		param.put("limitLen", len);
+		return this.getSqlSession().selectList(
+				QUESTION_DAO_NAMESPACE + "getMoreQuestionsbyLastId", param);
+		
+	}
+
+
+
+
 	
 
 }

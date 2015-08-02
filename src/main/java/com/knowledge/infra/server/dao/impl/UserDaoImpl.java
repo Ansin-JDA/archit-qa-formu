@@ -1,5 +1,8 @@
 package com.knowledge.infra.server.dao.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +14,7 @@ import com.knowledge.infra.server.model.User;
 @Component("userDao")
 public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao{
     private static final String  USER_DAO_NAMESPACE="com.knowledge.infra.server.dao.UserDao.";
-	public User getUser(User user) {
-		return null;
-	}
+
 
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
@@ -34,6 +35,11 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao{
 	@Autowired
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		super.setSqlSessionFactory(sqlSessionFactory);
+	}
+
+	public List<User> getUsers(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return this.getSqlSession().selectList(USER_DAO_NAMESPACE+"getUsersbyMap", param);
 	}
 	
 	
