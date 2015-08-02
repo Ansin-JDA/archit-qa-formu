@@ -1,0 +1,166 @@
+html,
+body,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+form,
+input,
+img {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+h4 {
+  margin: 10px;
+}
+li {
+  margin-bottom: 2px;
+}
+.pos-rel {
+  position: relative;
+}
+.pos-abs {
+  position: absolute;
+}
+.dis-none {
+  display: none;
+}
+.dis-in {
+  display: inline;
+}
+.dis-inbl {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.dis-bl {
+  display: block;
+}
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.pos-left-top {
+  left: 0px;
+  top: 0px;
+  position: absolute;
+}
+.pos-right-top {
+  right: 0px;
+  top: 0px;
+  position: absolute;
+}
+.pos-left-bottom {
+  left: 0px;
+  bottom: 0px;
+  position: absolute;
+}
+.pos-right-bottom {
+  right: 0px;
+  bottom: 0px;
+  position: absolute;
+}
+.clear-both {
+  clear: both;
+}
+.marg-mid {
+  margin: 0 auto;
+}
+.up-arrow {
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: white white gray white;
+}
+.down-arrow {
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: white white gray white;
+  border-color: gray white white white;
+}
+.marg-r5 {
+  margin-right: 5px;
+}
+.marg-r10 {
+  margin-right: 10px;
+}
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: Microsoft Yahei;
+}
+.main-wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+.main-content {
+  width: 780px;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.side {
+  width: 170px;
+  margin-top: 30px;
+  margin-left: 50px;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  vertical-align: top;
+}
+button,
+input[type=submit] {
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 3px;
+  behavior: url(border-radius.htc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#00a42c, endColorStr=#00742c);
+}
+.footer-wrapper {
+  background-color: #9f9fa0;
+}
+.footer {
+  width: 1000px;
+  height: 190px;
+  padding-top: 30px;
+  margin: 0 auto;
+}
+.footer .link {
+  width: 162.66666667px;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.footer .first {
+  text-align: left;
+}
+.footer .last {
+  text-align: right;
+}
+.footer .info {
+  margin-top: 85px;
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+}

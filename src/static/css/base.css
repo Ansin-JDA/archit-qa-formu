@@ -6,7 +6,10 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+form,
+input,
+img {
   padding: 0px;
   margin: 0px;
   border: none;
@@ -32,10 +35,13 @@ li {
 .dis-none {
   display: none;
 }
+.dis-in {
+  display: inline;
+}
 .dis-inbl {
   display: inline-block;
-  *display: inline;
   zoom: 1;
+  *display: inline;
 }
 .dis-bl {
   display: block;
@@ -88,4 +94,10 @@ li {
   border-style: solid;
   border-color: white white gray white;
   border-color: gray white white white;
+}
+.marg-r5 {
+  margin-right: 5px;
+}
+.marg-r10 {
+  margin-right: 10px;
 }

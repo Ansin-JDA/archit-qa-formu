@@ -20,10 +20,14 @@ li{
 	display: none;
 }
 
+.dis-in{
+	display: inline;
+}
+
 .dis-inbl{
-	display : inline-block;
-	*display: inline;
+	display: inline-block;
 	zoom: 1;
+	*display: inline;
 }
 
 .dis-bl{
@@ -82,4 +86,44 @@ li{
 .down-arrow{
 	.up-arrow;
 	;border-color: gray white white white;
+}
+
+.marg-r5{
+	margin-right: 5px;
+}
+
+.marg-r10{
+	margin-right: 10px;
+}
+
+.Marg-r(@dist: 10px){
+	margin-right: @dist;
+}
+
+.Marg-t(@dist: 10px){
+	margin-top: @dist;
+}
+
+.Marg-l(@dist: 10px){
+	margin-left: @dist;
+}
+
+.Marg-b(@dist: 10px){
+	margin-bottom: @dist;
+}
+
+.Padd-r(@dist: 10px){
+	padding-right: @dist;
+}
+
+.Padd-l(@dist: 10px){
+	padding-left: @dist;
+}
+
+.Padd-t(@dist: 10px){
+	padding-top: @dist;
+}
+
+.Padd-b(@dist: 10px){
+	padding-bottom: @dist;
 }

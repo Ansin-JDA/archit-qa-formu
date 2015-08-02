@@ -1,40 +1,64 @@
-@import "base.less";
+@import "layout.less";
 
-@navbar-bgc: #00a0e9;
-@navbar-link-c: white;
-@navbar-link-reverse-c: black;
-@navbar-logo-c: white;
+@navbar-bgc: @darkergreen;
+@navbarLinkColor: @white;
 @navbar-dropdown-item-border-bottom-c : lightblue;
 
-@navbar-height : 45px;
-@subnavbar-height : 80px;
-@subnavbar-padding : 10px;
+@navbarHeight : 35px;
+@navbar-width : @contentWidth;
 
 .logo{
-	color : @navbar-logo-c;
-	font-weight: bold;
-	text-decoration: none;
+	@logoHeight: 21px;
+	width: 50px;
+	height: @logoHeight;
+	vertical-align: top;
+	margin-top: (@navbarHeight - @logoHeight) / 2;
 }
 
-.navbar{
-	background-color : @navbar-bgc;
-	height : @navbar-height;
-	padding : 0 10px;
+.navbar-wrapper{
+	.LinearGradient(@lightgreen, @darkergreen);	
 }
 
-.navbar-item{
-	height : @navbar-height;
-	line-height: @navbar-height;
-	vertical-align: middle;
-	.dis-inbl;
+.navbar{	
+	width : @navbar-width;
+	.marg-mid;
+	
+	;.navbar-item{
+		height: @navbarHeight;
+		line-height: @navbarHeight;
+		vertical-align: middle;
+		.dis-inbl;
+	}
+	
+	;.navbar-form{
+		input{
+			vertical-align : middle;
+			margin-top: -3px;
+		}
+		@navbarInputHeight : 25px;
+		input[type=text]{
+			@navbarInputWidth : 350px;
+			width: @navbarInputWidth;
+			height: @navbarInputHeight;
+			.dis-inbl;
+		}
+		input[type=submit]{
+			@navbarInputWidth : 50px;
+			width : @navbarInputWidth;
+			height: @navbarInputHeight;
+			font-size: 16px;
+		}
+	}
 }
 
 .navbar-link{
-	color : @navbar-link-c;
-}
-
-.navbar-link-reverse{
-	color : @navbar-link-reverse-c;
+	@margin-l: 30px;
+	@fontSize: 14px;
+	color : @navbarLinkColor;
+	font-size: @fontSize;
+	line-height: @navbarHeight;
+	.Marg-l(@margin-l);
+	.dis-inbl;
 }
 
 .navbar-dropdown{
@@ -50,7 +74,124 @@
 	display : block;
 }
 
+@subnavbar-height : 130px; //ie下要调整
+@subnavbar-padding-top : 50px;
 .subnavbar{
-	height : @subnavbar-height;
-	padding : @subnavbar-padding;
+	.navbar;
+	;height : @subnavbar-height;
+	background-color: white;
+	padding-top: @subnavbar-padding-top;
+}
+
+@subnavbar-item-h : 30px;
+.sublogo{
+	@sublogo-h : 54px;
+	width : 145px;
+	height : @sublogo-h;
+	position: relative;
+	top : @subnavbar-item-h - @sublogo-h;
+}
+
+.subnavbar-item{
+	.navbar > .navbar-item;
+	;height : @subnavbar-item-h;
+	;line-height: @subnavbar-item-h;
+}
+
+.navbar-tag{
+	@width: 60px;
+	@height: 30px;
+	@fontSize: 14px;
+	.dis-inbl;
+	;background-color: gray;
+	color: white;
+	width : @width;
+	height : @height;
+	line-height: 30px;
+	font-size: @fontSize;
+	margin-left: 5px;
+	text-align: center;
+}
+
+.navbar-last-tag{
+	margin-right: -11px;
+}
+
+.guidenavbar{
+	@border: 1px;
+	@padding: 3px;
+	.navbar;
+	;background-color: white;
+	padding: @padding;
+	border : solid @border #dcdcdd;
+}
+
+.guidenavbar-content{
+	@height: 214px;
+	@padding-t: 30px;
+	height : @height + @padding-t;
+	background-color: #f7f7f7;
+	padding : @padding-t 40px 0px;
+	.pos-rel;
+
+	;.textblock{
+		width : 240px;
+	}
+	
+	;.imageblock{
+		margin-left: 70px;
+	}
+	
+	;.image{
+		height: 182px;
+		margin-right: 80px;
+	}
+	
+	;.lastimage{
+		margin-right: 0px;
+	}
+	
+	#GuideImage1{
+		width: 156px;
+	}
+	#GuideImage2{
+		width: 84px;
+	}
+	#GuideImage3{
+		width: 184px;
+	}
+}
+
+.guidenavbar-item{
+	.navbar > .navbar-item;
+	;height : auto;
+}
+
+.guidenavbar-text{
+	height : 82px;
+	font-size: 14px;
+	line-height: 21px;
+}
+
+.guidenavbar-btn{
+	@height: 35px;
+	margin-top: 30px;
+	width: 175px;
+	height: @height;
+	line-height: @height - 5px;
+	font-size: 16px;
+}
+
+.guidenavbar-close{
+	img{
+		@length: 20px;
+		@width: @length;
+		@height: @length;
+		width: @width;
+		height: @height;
+	}
+	.pos-abs;
+	;@pos: 7px;
+	right: @pos;
+	top: @pos;
 }
