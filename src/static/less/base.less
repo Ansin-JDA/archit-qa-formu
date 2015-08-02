@@ -1,15 +1,129 @@
+@import "clear.less";
+
+h4{
+	margin: 10px;
+}
+
+li{
+	margin-bottom: 2px;
+}
+
 .pos-rel{
 	position : relative;
+}
+
+.pos-abs{
+	position: absolute;
 }
 
 .dis-none{
 	display: none;
 }
 
+.dis-in{
+	display: inline;
+}
+
+.dis-inbl{
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+
+.dis-bl{
+	display: block;
+}
+
 .right{
 	float : right;
 }
 
+.left{
+	float : left;
+}
+
+.pos-left-top{
+	left : 0px;
+	top : 0px;	
+	.pos-abs;
+}
+
+.pos-right-top{
+	right : 0px;
+	top : 0px;
+	.pos-abs;
+}
+
+.pos-left-bottom{
+	left : 0px;
+	bottom : 0px;
+	.pos-abs;
+}
+
+.pos-right-bottom{
+	right : 0px;
+	bottom : 0px;
+	.pos-abs;
+}
+
 .clear-both{
 	clear: both;
+}
+
+.marg-mid{
+	margin : 0 auto;
+}
+
+.up-arrow{
+	display: block;
+	width:0; 
+	height:0; 
+	border-width:10px; 
+	border-style:solid; 
+	border-color:white white gray white;
+}
+
+.down-arrow{
+	.up-arrow;
+	;border-color: gray white white white;
+}
+
+.marg-r5{
+	margin-right: 5px;
+}
+
+.marg-r10{
+	margin-right: 10px;
+}
+
+.Marg-r(@dist: 10px){
+	margin-right: @dist;
+}
+
+.Marg-t(@dist: 10px){
+	margin-top: @dist;
+}
+
+.Marg-l(@dist: 10px){
+	margin-left: @dist;
+}
+
+.Marg-b(@dist: 10px){
+	margin-bottom: @dist;
+}
+
+.Padd-r(@dist: 10px){
+	padding-right: @dist;
+}
+
+.Padd-l(@dist: 10px){
+	padding-left: @dist;
+}
+
+.Padd-t(@dist: 10px){
+	padding-top: @dist;
+}
+
+.Padd-b(@dist: 10px){
+	padding-bottom: @dist;
 }

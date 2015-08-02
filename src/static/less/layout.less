@@ -1,0 +1,54 @@
+@import "base.less";
+@import "constant.less";
+
+@contentWidth : 1000px;
+@mainContentWidth : 780px;
+@sideWidth : 220px; //这个不理解
+
+*{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: Microsoft Yahei;
+}
+
+.main-wrapper{
+	width : @contentWidth;
+	.marg-mid;
+}
+
+.main-content{
+	width : @mainContentWidth;
+	.dis-inbl;
+}
+
+.side{
+	@margin-t: 30px;
+	@margin-l: 50px;
+	width : @sideWidth - @margin-l;
+	.Marg-t(@margin-t);
+	.Marg-l(@margin-l);
+	.dis-inbl;
+	;vertical-align: top;
+}
+
+.BorderRadius(@angle){
+	border-radius: @angle;
+	behavior: url(border-radius.htc);
+}
+
+.LinearGradient(@startColor;@endColor){
+	*zoom: 1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr= @startColor, endColorStr= @endColor);
+}
+
+button, input[type=submit]{
+	color: white;
+	font-size: 15px;
+	border: none;
+	.BorderRadius(3px);
+	.LinearGradient(#00a42c, #00742c);
+}
+
+.ClearLinearGradient(){
+	filter: none;
+}
