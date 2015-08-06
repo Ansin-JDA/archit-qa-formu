@@ -7,12 +7,13 @@
 		SELECT
 		questionid,qtitle,qcontent,qcreateuserid,qupdateuserid,qcreatetime,qupdatetime,qgoodnum,qbadnum,qlabel,qstaus,qviewtimes
 		FROM t_question
-		<where>
+		<where>     
 			<if test="questionid !=null ">
 				questionid=#{questionid, jdbcType=INTEGER}
 			</if>
 			<if test="qtitle !=null ">
-				AND qtitle=#{qtitle, jdbcType=VARCHAR}
+			<!--  AND qtitle=#{qtitle, jdbcType=VARCHAR}  -->	
+				AND qtitle LIKE CONCAT('%', CONCAT(#{qtitle, jdbcType=VARCHAR}, '%'))
 			</if>
 			<if test="qcreateuserid !=null ">
 				AND qcreateuserid=#{qcreateuserid, jdbcType=VARCHAR}
@@ -27,7 +28,8 @@
 				AND qupdatetime=#{qupdatetime, jdbcType=VARCHAR}
 			</if>
 			<if test="qlabel !=null ">
-				AND qlabel=#{qlabel, jdbcType=VARCHAR}
+			<!-- AND qlabel=#{qlabel, jdbcType=VARCHAR}   -->	
+				AND qlabel LIKE CONCAT('%', CONCAT(#{qlabel, jdbcType=VARCHAR}, '%'))
 			</if>
 			<if test="qstaus !=null ">
 				AND qstaus=#{qstaus, jdbcType=VARCHAR}

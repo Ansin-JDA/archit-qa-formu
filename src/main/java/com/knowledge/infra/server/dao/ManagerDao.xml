@@ -5,15 +5,17 @@
 <select id="getManagersbyMap" parameterType = "java.util.Map" resultType="com.knowledge.infra.server.model.Manager">
    SELECT managerid,mname,memail,mpassword,mstatus
    FROM t_manager
-   <where>
+   <where>     
      <if test="managerid !=null ">  
            managerid=#{managerid, jdbcType=INTEGER}    
      </if> 
       <if test="mname !=null ">  
-          AND mname=#{mname, jdbcType=VARCHAR} 
+     <!--  AND mname=#{mname, jdbcType=VARCHAR}  -->     
+          AND mname LIKE CONCAT('%', CONCAT(#{mname, jdbcType=VARCHAR}, '%'))
      </if> 
       <if test="memail !=null ">  
-          AND memail=#{memail, jdbcType=VARCHAR} 
+      <!-- AND memail=#{memail, jdbcType=VARCHAR}  -->    
+          AND memail LIKE CONCAT('%', CONCAT(#{memail, jdbcType=VARCHAR}, '%')) 
      </if> 
      <if test="mpassword !=null ">  
           AND mpassword=#{mpassword, jdbcType=VARCHAR} 
