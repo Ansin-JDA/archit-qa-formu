@@ -76,9 +76,6 @@ public class ForumServiceController {
 	public String testData(HttpServletRequest request) {
 
 		// 添加两条数据
-		
-		
-
 		return "hehe";
 
 	}
@@ -90,9 +87,7 @@ public class ForumServiceController {
 		
 		ModelAndView m = new ModelAndView();
 		m.addObject("message","aaa");
-
 		return m;
-
 	}
 	
 	
@@ -205,14 +200,24 @@ public class ForumServiceController {
 //// quetionDetail page
 
     
-	@RequestMapping(value = "/show_question_detail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/showquestiondetail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 
-	public ModelAndView getQuestionDetail(HttpServletRequest request,@PathVariable int question_id) {
+	public ModelAndView showquestiondetail(HttpServletRequest request, @PathVariable int question_id) {
 
 		ModelAndView container=new ModelAndView();
-	
-		return container ;
-
+		System.out.println("========================================");
+		System.out.println(question_id);
+		Question question=this.questionService.getQuestion(question_id);
+		System.out.println(question);
+		System.out.println(question.getQuestionid());
+		System.out.println(question.getQtitle());
+		System.out.println(question.getQcontent());
+		if(question == null)
+		{
+			return null;
+		}
+		container.addObject("question", question);
+		return container;
 	}
 
 ////search page ???
