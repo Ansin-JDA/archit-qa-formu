@@ -8,7 +8,7 @@ void function(){
 			
 		}
 		
-		var _create = function(parent){
+		var _createMask = function(parent){
 			var maskID = "FullScreenMask"
 			var mask = $.id(maskID)
 			if(mask){
@@ -23,45 +23,102 @@ void function(){
 		}
 	}
 	
-    var GetScreenSize= function(){
-        /*
-            该函数用于返回屏幕分辨率. 是指整个屏幕的分辨率, 而非浏览器分辨率.
-            返回一个对象, 对象包括宽度, 高度.
-        */
-        return {
-            'width': window.screen.width,
-            'height': window.screen.height
-        };
-    };
-
-    var CreateFullScreenMask= function(parent){
-			
-    };
-	
-	var BaseDialog = {
-		template: "\
-			<div class = 'base-dialog'>\
+	var BaseDialog = function(){
+		this.template = "\
+			<div id = 'baseDialog' class = 'base-dialog'>\
 			</div>\
-		",
-		css: "\
+		"
+		this.css = "\
 			.base-dialog{\
 				display: inline-block;\
 				background-color: white;\
+				overflow: hidden;\
+				padding: 20px;\
+				box-shadow: 3px 3px 3px 3px #b0b0b0;\
+				border-radius: 3px;\
+				*border-top: solid 1px #ddd;\
+				*border-left: solid 1px #ddd;\
+				*border-right: solid 2px #b0b0b0;\
+				*border-bottom: solid 2px #b0b0b0;\
 			}\
-		",
+		"
+		this.cssID = "BaseDialogStyle" //给style标签的id，同一种类型的dialog不需要重复的style标签。
 	}
 	
-	var DialogRender = function(){
-		var render = function(dialogTemplate, parent){
-			var temp = $.el("div")
-			temp.innerHTML += dialogTemplate.template
-			parent.appendChild(temp.childNodes[0])
+	//dialog的实例。
+	var Dialog = function(option){
+		var baseDialog = new BaseDialog()
+		var dialog = $.el(baseDialog.template)
+		if(!$.id(baseDialog.cssID) || $.id(baseDialog.cssID).nodeName.toLowerCase() !== "style"){	
 			var style = $.el("style")
-			style.innerHTML += dialogTemplate.css
-			var Style = document.documentElement.childNodes[0]
-			Style.appendChild(style)
+			style.innerHTML += baseDialog.css
+			document.head.appendChild(style)
+		}
+		
+		var content = option.content
+		, canMove = option.canMove
+		, canScale = option.canScale
+		, onShow = option.onShow
+		, onHide = option.onHide
+		, onRemove = option.onRemove
+		, self = this
+			
+		dialog.appendChild(content)
+		
+		this.show = function(){
+			dialog.style.display = "inline-block"
+			onShow() //show完call一下。
+		}
+		
+		this.hide = function(){
+			dialog.style.display = "none"
+			onHide() //hide完call一下。
+		}
+		
+		this.append = function(parent){
+			if(!parent || !parent.appendChild){
+				return self
+			}
+			parent.appendChild(dialog)
+			self.show()
+			return self
+		}
+		
+		this.remove = function(){
+			if(!dialog.parentNode){
+				onRemove(false)
+				return self
+			}
+			dialog.parentNode.removeChild(dialog)
+			onRemove() //remove完call一下
+			return self
 		}
 	}
+	
+	var defaultDialogOption = {
+		content: $.el("div"),
+		canMove: false,
+		canScale: false,
+		onShow: function(){}, //显示
+		onHide: function(){}, //隐藏
+		onRemove: function(){}, //去除
+	}
+	
+	var DialogFactory = function(){
+		var createDialog = function(option){
+			option = $.extend(option, defaultDialogOption)
+			option.content = typeof(option.content) === "string" ? $.el(option.content) : option.content
+			var dialog = new Dialog(option)
+			return dialog
+		}	
+		
+		return {
+			createDialog: createDialog,
+		}
+	}
+	
+	window.DialogFactory = DialogFactory()
+	return
 
     var FloatDetailedInfoDialog= function(parent){
         /*
@@ -81,15 +138,6 @@ void function(){
                     "<button class= 'btn btn-primary FloatDetailedInfoDialog_footerBtn' id= 'FloatDetailedInfoDialog_closeBtn'>关闭</button>"+
                 "</div>"+
             "</div>");
-
-        //寻找唯一ID
-        while(true){
-            var id= "FloatDetailedInfoDialog"+ Math.floor(Math.random()* 10000).toString();
-            if($("#"+ id).length=== 0){
-                $dialog.attr("id", id);
-                break;
-            }
-        }
 
         var $title= $dialog.find("#FloatDetailedInfoDialog_title")
         var $body= $dialog.find("#FloatDetailedInfoDialog_body");

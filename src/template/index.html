@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<meta charset="UTF-8">
@@ -65,6 +66,40 @@
 					<span class = "title">动态问答</span>
 				</div>
 				<ul>
+					<c:forEach items = getLatestQuestions()>
+						<li>
+							<div class = "content-section">
+								<ul class="operation-wrapper">
+									<li class="operation">
+										<span class = "number"><c:out value = "{item.}"/></span><br>
+										<span class = "word">赞</span>
+									</li>
+									<li class="operation">
+										<span class = "number">2</span><br>
+										<span class = "word">踩</span>
+									</li>
+									<li class="operation">
+										<span class = "number">3</span><br>
+										<span class = "word">浏 览</span>
+									</li>
+								</ul>
+								<div class="content-wrapper">
+									<p class = "content-title">工程管理、工程咨询、项目管理之间有什么区别？各有什么特长？</p>
+									<div class="content-status-wrapper">
+										<ul class="tag-wrapper">
+											<li class="tag">工程管理</li>
+											<li class="tag last">工程咨询</li>
+										</ul>
+										<div class="status-wrapper">
+											<span class = "status">2小时前提问</span>
+											<span class = "status poster">鲁班</span>
+											<span class = "status">123</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</c:forEach>
 					<li>
 						<div class = "content-section">
 							<ul class="operation-wrapper">
