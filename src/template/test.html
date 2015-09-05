@@ -1,0 +1,31 @@
+<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src = "../static/script/base.js"></script>
+		<script src = "../static/script/dialog.js"></script>
+		<script>
+			$.domReady(function(){			
+				var dialog = DialogFactory.createDialog({
+					content: "<label>hello，<input type = 'text'/></label>",
+					onShow: function(result){
+						alert("dialog show")
+//						dialog.hide()
+					},
+					onHide: function(result){
+						alert("dialog hide")
+						dialog.remove()
+					},
+					onRemove: function(result){
+						alert("dialog remove")
+					},
+				})
+				dialog.append(document.body)
+			})
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
