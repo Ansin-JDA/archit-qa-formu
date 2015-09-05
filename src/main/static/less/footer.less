@@ -1,0 +1,35 @@
+@import "layout.less";
+
+.footer-wrapper{
+	background-color: @darkgray;
+}
+
+.footer{
+	@height: 190px;
+	@padding: 30px;
+	width: @contentWidth;
+	height: @height;
+	.Padd-t(@padding);
+	.marg-mid;
+	;.link{
+		@width: @contentWidth / 6 - 4px;
+		width: @width;
+		color: @black;
+		text-align: center;
+		.dis-inbl;
+	}
+	;.first{
+		text-align: left;
+	}
+	;.last{
+		text-align: right;
+	}
+	;.info{
+		@margin: 85px;
+		@fontSize: 14px;
+		.Marg-t(@margin);
+		line-height: 20px;
+		font-size: @fontSize;
+		text-align: center;
+	}
+}
