@@ -169,7 +169,7 @@ public class ForumServiceController {
 	}
 	
     ///Get ALL Questions for the main page, No paging here
-	@RequestMapping(value = "/getallquestions", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/index", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public ModelAndView getAllQuestions(HttpServletRequest request) {
 		

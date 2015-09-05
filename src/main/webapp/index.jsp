@@ -67,33 +67,33 @@
 					<span class = "title">动态问答</span>
 				</div>
 				<ul>
-					<c:forEach items = getLatestQuestions()>
+					<c:forEach items = "${questionList}" var="question">
 						<li>
 							<div class = "content-section">
 								<ul class="operation-wrapper">
 									<li class="operation">
-										<span class = "number"><c:out value = "{item.qgoodnum}"/></span><br>
+										<span class = "number"><c:out value = "${question.qgoodnum}"/></span><br>
 										<span class = "word">赞</span>
 									</li>
 									<li class="operation">
-										<span class = "number"><c:out value = "{item.qbadnum}"/></span><br>
+										<span class = "number"><c:out value = "${question.qbadnum}"/></span><br>
 										<span class = "word">踩</span>
 									</li>
 									<li class="operation">
-										<span class = "number"><c:out value = "{item.qviewtimes}"/></span><br>
+										<span class = "number"><c:out value = "${question.qviewtimes}"/></span><br>
 										<span class = "word">浏 览</span>
 									</li>
 								</ul>
 								<div class="content-wrapper">
-									<p class = "content-title"><c:out value = "{item.qtitle}"/></p>
+									<p class = "content-title"><c:out value = "${question.qtitle}"/></p>
 									<div class="content-status-wrapper">
 										<ul class="tag-wrapper">
 											<li class="tag">工程管理</li>
 											<li class="tag last">工程咨询</li>
 										</ul>
 										<div class="status-wrapper">
-											<span class = "status"><c:out value = "{item.qcreatetime}"/></span>
-											<span class = "status poster"><c:out value = "{item.quserid}"/></span>
+											<span class = "status"><c:out value = "${question.qcreatetime}"/></span>
+											<span class = "status poster"><c:out value = "${question.qcreateuserid}"/></span>
 											<span class = "status">123</span>
 										</div>
 									</div>
