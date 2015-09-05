@@ -7,7 +7,7 @@
 		SELECT
 		answerid,areferenceqid,atitle,acontent,acreateuserid,aupdateuserid,acreatetime,aupdatetime,agoodnum,abadnum,astaus
 		FROM t_answer
-		<where>
+		<where>     
 			<if test="answerid !=null ">
 				answerid=#{answerid, jdbcType=INTEGER}
 			</if>
@@ -15,7 +15,8 @@
 				AND areferenceqid=#{areferenceqid, jdbcType=VARCHAR}
 			</if>
 			<if test="atitle !=null ">
-				AND atitle=#{atitle, jdbcType=VARCHAR}
+			<!-- AND atitle=#{atitle, jdbcType=VARCHAR}   -->	
+				AND atitle LIKE CONCAT('%', CONCAT(#{atitle, jdbcType=VARCHAR}, '%')) 
 			</if>
 			<if test="acreateuserid !=null ">
 				AND acreateuserid=#{acreateuserid, jdbcType=VARCHAR}
