@@ -46,7 +46,13 @@ public class QuestionServiceImpl implements QuestionService{
 	public Question getQuestion(int questionId) {
 		// TODO Auto-generated method stub
 		Map<String, Object> condition = new HashMap<String, Object>(1);
-		condition.put("questionId", questionId);
+		condition.put("questionid", questionId);
+        for (int i=0; i < questionDao.getQuestions(condition).size(); i++) {
+        	System.out.println(questionDao.getQuestions(condition).get(i).getQuestionid());
+        	System.out.println(questionDao.getQuestions(condition).get(i).getQtitle());
+        	System.out.println(questionDao.getQuestions(condition).get(i).getQcontent());
+        }
+        System.out.println("===========查询测试问题成功==========");
 		return questionDao.getQuestions(condition).get(0);
 	}
 

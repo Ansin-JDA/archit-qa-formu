@@ -47,7 +47,13 @@ public class AnswerServiceImpl implements AnswerService{
 	public Answer getAnswer(int answerId) {
 		// TODO Auto-generated method stub
 		Map<String, Object> condition = new HashMap<String, Object>(1);
-		condition.put("answerId", answerId);
+		condition.put("answerid", answerId);
+        for (int i=0; i < answerDao.getAnswers(condition).size(); i++) {
+        	System.out.println(answerDao.getAnswers(condition).get(i).getAnswerid());
+        	System.out.println(answerDao.getAnswers(condition).get(i).getAtitle());
+        	System.out.println(answerDao.getAnswers(condition).get(i).getAcontent());
+        }
+        System.out.println("===========查询测试问题成功==========");
 		return answerDao.getAnswers(condition).get(0);
 	}
 

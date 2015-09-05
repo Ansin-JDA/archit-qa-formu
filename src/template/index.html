@@ -71,28 +71,28 @@
 							<div class = "content-section">
 								<ul class="operation-wrapper">
 									<li class="operation">
-										<span class = "number"><c:out value = "{item.}"/></span><br>
+										<span class = "number"><c:out value = "{item.qgoodnum}"/></span><br>
 										<span class = "word">赞</span>
 									</li>
 									<li class="operation">
-										<span class = "number">2</span><br>
+										<span class = "number"><c:out value = "{item.qbadnum}"/></span><br>
 										<span class = "word">踩</span>
 									</li>
 									<li class="operation">
-										<span class = "number">3</span><br>
+										<span class = "number"><c:out value = "{item.qviewtimes}"/></span><br>
 										<span class = "word">浏 览</span>
 									</li>
 								</ul>
 								<div class="content-wrapper">
-									<p class = "content-title">工程管理、工程咨询、项目管理之间有什么区别？各有什么特长？</p>
+									<p class = "content-title"><c:out value = "{item.qtitle}"/></p>
 									<div class="content-status-wrapper">
 										<ul class="tag-wrapper">
 											<li class="tag">工程管理</li>
 											<li class="tag last">工程咨询</li>
 										</ul>
 										<div class="status-wrapper">
-											<span class = "status">2小时前提问</span>
-											<span class = "status poster">鲁班</span>
+											<span class = "status"><c:out value = "{item.qcreatetime}"/></span>
+											<span class = "status poster"><c:out value = "{item.quserid}"/></span>
 											<span class = "status">123</span>
 										</div>
 									</div>
@@ -100,102 +100,6 @@
 							</div>
 						</li>
 					</c:forEach>
-					<li>
-						<div class = "content-section">
-							<ul class="operation-wrapper">
-								<li class="operation">
-									<span class = "number">1</span><br>
-									<span class = "word">赞</span>
-								</li>
-								<li class="operation">
-									<span class = "number">2</span><br>
-									<span class = "word">踩</span>
-								</li>
-								<li class="operation">
-									<span class = "number">3</span><br>
-									<span class = "word">浏 览</span>
-								</li>
-							</ul>
-							<div class="content-wrapper">
-								<p class = "content-title">工程管理、工程咨询、项目管理之间有什么区别？各有什么特长？</p>
-								<div class="content-status-wrapper">
-									<ul class="tag-wrapper">
-										<li class="tag">工程管理</li>
-										<li class="tag last">工程咨询</li>
-									</ul>
-									<div class="status-wrapper">
-										<span class = "status">2小时前提问</span>
-										<span class = "status poster">鲁班</span>
-										<span class = "status">123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class = "content-section">
-							<ul class="operation-wrapper">
-								<li class="operation">
-									<span class = "number">1</span><br>
-									<span class = "word">赞</span>
-								</li>
-								<li class="operation">
-									<span class = "number">2</span><br>
-									<span class = "word">踩</span>
-								</li>
-								<li class="operation">
-									<span class = "number">3</span><br>
-									<span class = "word">浏 览</span>
-								</li>
-							</ul>
-							<div class="content-wrapper">
-								<p class = "content-title">工程管理、工程咨询、项目管理之间有什么区别？各有什么特长？</p>
-								<div class="content-status-wrapper">
-									<ul class="tag-wrapper">
-										<li class="tag">工程管理</li>
-										<li class="tag last">工程咨询</li>
-									</ul>
-									<div class="status-wrapper">
-										<span class = "status">2小时前提问</span>
-										<span class = "status poster">鲁班</span>
-										<span class = "status">123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class = "content-section">
-							<ul class="operation-wrapper">
-								<li class="operation">
-									<span class = "number">1</span><br>
-									<span class = "word">赞</span>
-								</li>
-								<li class="operation">
-									<span class = "number solved">2</span><br>
-									<span class = "word">踩</span>
-								</li>
-								<li class="operation">
-									<span class = "number">3</span><br>
-									<span class = "word">浏 览</span>
-								</li>
-							</ul>
-							<div class="content-wrapper">
-								<p class = "content-title">工程管理、工程咨询、项目管理之间有什么区别？各有什么特长？</p>
-								<div class="content-status-wrapper">
-									<ul class="tag-wrapper">
-										<li class="tag">工程管理</li>
-										<li class="tag last">工程咨询</li>
-									</ul>
-									<div class="status-wrapper">
-										<span class = "status">2小时前提问</span>
-										<span class = "status poster">鲁班</span>
-										<span class = "status">123</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
 				</ul>
 				<button class = "loading-more">加载更多问题</button>
 			</div>

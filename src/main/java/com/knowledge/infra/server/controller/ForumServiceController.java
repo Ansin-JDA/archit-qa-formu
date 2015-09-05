@@ -71,17 +71,25 @@ public class ForumServiceController {
 
 	}
 
-	@RequestMapping(value = "/forum_service/test", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/forum_service/test", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public String testData(HttpServletRequest request) {
 
 		// 添加两条数据
-		
-		
-
 		return "hehe";
 
 	}
+	
+	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	public ModelAndView  hello(HttpServletRequest request) {
+
+		// 添加两条数据
+		
+		ModelAndView m = new ModelAndView();
+		m.addObject("message","aaa");
+		return m;
+	}
+	
 	
 	
 	
@@ -138,6 +146,7 @@ public class ForumServiceController {
 
 	}
 
+	///Get existing users
 	@RequestMapping(value = "/forum_service/exist_user", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public String existUser(HttpServletRequest request) {
@@ -158,6 +167,21 @@ public class ForumServiceController {
 		return JacksonUtils.toJson(resp);
 
 	}
+	
+    ///Get ALL Questions for the main page, No paging here
+	@RequestMapping(value = "/index", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@ResponseBody
+	public ModelAndView getAllQuestions(HttpServletRequest request) {
+		
+		ModelAndView container=new ModelAndView();
+		Map<String, Object> m = new HashMap<String, Object>(1);
+		m.put("questionid", null);
+		List<Question> questions = this.questionService.getQuestions(m);    
+		container.addObject("questionList", questions);
+		return container;
+
+	}
+	
 ///main page	
     
 	@RequestMapping(value = "/main_page", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
@@ -176,17 +200,27 @@ public class ForumServiceController {
 //// quetionDetail page
 
     
-	@RequestMapping(value = "/show_question_detail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/showquestiondetail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 
-	public ModelAndView getQuestionDetail(HttpServletRequest request,@PathVariable int question_id) {
+	public ModelAndView showquestiondetail(HttpServletRequest request, @PathVariable int question_id) {
 
 		ModelAndView container=new ModelAndView();
-	
-		return container ;
-
+		System.out.println("========================================");
+		System.out.println(question_id);
+		Question question=this.questionService.getQuestion(question_id);
+		System.out.println(question);
+		System.out.println(question.getQuestionid());
+		System.out.println(question.getQtitle());
+		System.out.println(question.getQcontent());
+		if(question == null)
+		{
+			return null;
+		}
+		container.addObject("question", question);
+		return container;
 	}
 
-////search  page
+////search page ???
 
     
 	@RequestMapping(value = "/search_question", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
@@ -230,7 +264,7 @@ public class ForumServiceController {
 
 	}
 	
-	@RequestMapping(value = "/forum_service/vote_answer/{answer_id}/{status}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/forum_service/vote_question/{question_id}/{status}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public String voteQuestion(HttpServletRequest request,@PathVariable int question_id,@PathVariable int status) {
 
@@ -314,7 +348,6 @@ public class ForumServiceController {
 	@ResponseBody
 	public String searchQuestion(HttpServletRequest request,@PathVariable String keyword) {
 
-		
 	
 		return "" ;
 
