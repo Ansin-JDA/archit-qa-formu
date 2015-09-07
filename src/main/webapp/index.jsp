@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>问答网站</title>
 	<head>
-		<link rel="stylesheet" href="../static/css/index.css">
+		<link rel="stylesheet" href="./static/css/index.css">
 	</head>
 	<body>
 		<div class="navbar-wrapper">
@@ -17,7 +17,7 @@
 					<a href="#" class="navbar-link">登 录</a>						
 				</div>
 				<a href="#" class = "navbar-item marg-r10">
-					<img src="../static/image/logo-wh.gif" class = "logo">
+					<img src="./static/image/logo-wh.gif" class = "logo">
 				</a>
 				<div class="navbar-item">
 					<form action="#" method="post" class = "navbar-form">
@@ -36,7 +36,7 @@
 				<a href="#" class = "navbar-tag">用 户</a>
 				<a href="#" class = "navbar-tag navbar-last-tag">勋 章</a>
 			</div>
-			<img src="../static/image/color-logo.png" class = "sublogo">
+			<img src="./static/image/color-logo.png" class = "sublogo">
 		</div>
 		<div class="guidenavbar">
 			<div class="guidenavbar-content">
@@ -47,12 +47,12 @@
 					<button class = "guidenavbar-btn">花几分钟看一看</button>
 				</div>
 				<div class="guidenavbar-item imageblock">
-					<img src="../static/image/guide1.png" id = "GuideImage1" class = "image">
-					<img src="../static/image/guide2.png" id = "GuideImage2" class = "image">
-					<img src="../static/image/guide3.png" id = "GuideImage3" class = "image lastimage">
+					<img src="./static/image/guide1.png" id = "GuideImage1" class = "image">
+					<img src="./static/image/guide2.png" id = "GuideImage2" class = "image">
+					<img src="./static/image/guide3.png" id = "GuideImage3" class = "image lastimage">
 				</div>
 				<a href="#" class = "guidenavbar-close">
-					<img src="../static/image/close.png"></img>
+					<img src="./static/image/close.png"></img>
 				</a>
 			</div>
 		</div>
@@ -164,7 +164,7 @@
 			</div>
 		</div>
 	</body>
-	<script src = "../static/script/index.js"></script>
+	<script src = "./static/script/index.js"></script>
 	<script>
 		
 	</script>
