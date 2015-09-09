@@ -1,5 +1,6 @@
 package com.knowledge.infra.server.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,17 +43,23 @@ public class QuestionServiceImpl implements QuestionService{
 		// TODO Auto-generated method stub
 		return questionDao.getQuestions(para);
 	}
+	
+	public List<Question> getMoreQuestionsbyLastId(int lastQuestionId, Date lastTime, int len) {
+		return questionDao.getMoreQuestionsbyLastId(lastQuestionId, lastTime, len);
+	}
 
-	public Question getQuestion(int questionId) {
+	public Question getQuestionbyId(int questionId) {
 		// TODO Auto-generated method stub
 		Map<String, Object> condition = new HashMap<String, Object>(1);
 		condition.put("questionid", questionId);
+		//TODELETE Test code
         for (int i=0; i < questionDao.getQuestions(condition).size(); i++) {
         	System.out.println(questionDao.getQuestions(condition).get(i).getQuestionid());
         	System.out.println(questionDao.getQuestions(condition).get(i).getQtitle());
         	System.out.println(questionDao.getQuestions(condition).get(i).getQcontent());
         }
         System.out.println("===========查询测试问题成功==========");
+        //TODELETE Test code end
 		return questionDao.getQuestions(condition).get(0);
 	}
 

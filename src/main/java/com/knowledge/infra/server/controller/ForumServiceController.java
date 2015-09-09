@@ -1,5 +1,6 @@
 package com.knowledge.infra.server.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,10 @@ public class ForumServiceController {
 	
 	@Autowired
 	private AnswerService answerService;
+	
+	private int lastQuestionId = 0;
+	private Date lastQuestiontime;
+	private static final int pageLen = 10;
 	
 	@ExceptionHandler
 	public String handleException(Exception e) {
@@ -169,7 +174,7 @@ public class ForumServiceController {
 	}
 	
     ///Get ALL Questions for the main page, No paging here
-	@RequestMapping(value = "/index", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/index_test", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public ModelAndView getAllQuestions(HttpServletRequest request) {
 		
@@ -180,6 +185,24 @@ public class ForumServiceController {
 		container.addObject("questionList", questions);
 		return container;
 
+	}
+	
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@ResponseBody
+	public ModelAndView getQuestionsByLastId(HttpServletRequest request) {
+		
+		ModelAndView container=new ModelAndView();
+		List<Question> questions = this.questionService.getMoreQuestionsbyLastId(lastQuestionId, lastQuestiontime, pageLen); 
+		container.addObject("questionList", questions);
+		lastQuestionId = questions.get(questions.size()-1).getQuestionid();
+		lastQuestiontime = questions.get(questions.size()-1).getQupdatetime();
+		System.out.println("==========DEBUG: In getQuestionsByLastId. =============");
+		System.out.println(lastQuestionId);
+		System.out.println(lastQuestiontime);
+		System.out.println(questions.size());
+		System.out.println("==========DEBUG END: In getQuestionsByLastId. =============");
+		return container;
 	}
 	
 ///main page	
@@ -205,13 +228,14 @@ public class ForumServiceController {
 	public ModelAndView showquestiondetail(HttpServletRequest request, @PathVariable int question_id) {
 
 		ModelAndView container=new ModelAndView();
-		System.out.println("========================================");
+		System.out.println("==========DEBUG: In showquestiondetail. =============");
 		System.out.println(question_id);
-		Question question=this.questionService.getQuestion(question_id);
+		Question question=this.questionService.getQuestionbyId(question_id);
 		System.out.println(question);
 		System.out.println(question.getQuestionid());
 		System.out.println(question.getQtitle());
 		System.out.println(question.getQcontent());
+		System.out.println("==========DEBUG END: In showquestiondetail. =============");
 		if(question == null)
 		{
 			return null;
@@ -268,7 +292,7 @@ public class ForumServiceController {
 	@ResponseBody
 	public String voteQuestion(HttpServletRequest request,@PathVariable int question_id,@PathVariable int status) {
 
-	    Question question=this.questionService.getQuestion(question_id);
+	    Question question=this.questionService.getQuestionbyId(question_id);
 	    GetServerResp resp = new GetServerResp();
 	    if(question == null )
 	    {
@@ -291,7 +315,7 @@ public class ForumServiceController {
 	@ResponseBody
 	public String replyQuestion(HttpServletRequest request,@PathVariable int question_id) {
 
-	    Question question=this.questionService.getQuestion(question_id);
+	    Question question=this.questionService.getQuestionbyId(question_id);
 	    GetServerResp resp = new GetServerResp();
 	    if(question == null )
 	    {
