@@ -5,6 +5,10 @@
 	<meta charset="UTF-8">
 	<title>问答网站</title>
 	<head>
+		<script type="text/javascript" src = "../static/script/bower_components/jquery/dist/jquery.js"></script>
+		<script type="text/javascript" src = "../static/script/bower_components/js-cookie/src/js.cookie.js"></script>
+		<script type="text/javascript" src = "../static/script/index.js"></script>
+		<script type="text/javascript" src = "../static/script/dialog.js"></script>
 		<link rel="stylesheet" href="../static/css/index.css">
 	</head>
 	<body>
@@ -13,8 +17,8 @@
 				<div class = "navbar-item right">
 					<a href="#" class = "navbar-link">指 南</a>
 					<a href="#" class="navbar-link">帮 助</a>
-					<a href="#" class="navbar-link">注 册</a>
-					<a href="#" class="navbar-link">登 录</a>						
+					<a id = "registerBtn" href="#" class="navbar-link">注 册</a>
+					<a id = "loginBtn" href="#" class="navbar-link">登 录</a>						
 				</div>
 				<a href="#" class = "navbar-item marg-r10">
 					<img src="../static/image/logo-wh.gif" class = "logo">
@@ -51,7 +55,7 @@
 					<img src="../static/image/guide2.png" id = "GuideImage2" class = "image">
 					<img src="../static/image/guide3.png" id = "GuideImage3" class = "image lastimage">
 				</div>
-				<a href="#" class = "guidenavbar-close">
+				<a id = "closeGuideNavBar" href="#" class = "guidenavbar-close">
 					<img src="../static/image/close.png"></img>
 				</a>
 			</div>
