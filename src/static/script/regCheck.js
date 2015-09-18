@@ -12,7 +12,7 @@ function checkText(obj)
    var id= obj.name;
    var text=document.getElementById(id.toString().toUpperCase()).value;
 
-   //判断是否为空
+   //判断是否为空,用正则表达式，将所有的空格替换成""后，只剩下""（空字符）
    if(text.replace(/\s/g, "")=="")
    {
       document.getElementById(id).innerHTML="输入不能为空";
@@ -25,6 +25,7 @@ function checkText(obj)
      //
      var strsub=id.substring(1,id.length);
      var strMethod="check"+firstChar+strsub+"()";
+     //执行strMethod的函数
      var isTrue = eval(strMethod);
      if(isTrue)
      {
@@ -71,7 +72,7 @@ function checkPassword()
 }
 
 
-function doublecheckPassword()
+function checkPassword2()
 {
      var id=document.getElementById("PASSWORD");
      var id2=document.getElementById("PASSWORD2");
