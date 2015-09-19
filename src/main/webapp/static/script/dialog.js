@@ -10,12 +10,12 @@ void function(){
 		
 		var _createMask = function(parent){
 			var maskID = "FullScreenMask"
-			var mask = $.id(maskID)
+			var mask = $("#" + maskID)
 			if(mask){
 				parent && parent.appendChild && parent.appendChild(mask)
 				return parent	
 			}
-			mask = $.el("div").addClass("FullScreenMask")
+			mask = $("div").addClass("FullScreenMask")
 			mask.id = maskID
 			
 			parent && parent.appendChild && parent.appendChild(mask)
@@ -24,10 +24,10 @@ void function(){
 	}
 	
 	var BaseDialog = function(){
-		this.template = "\
-			<div id = 'baseDialog' class = 'base-dialog'>\
-			</div>\
-		"
+		this.template = [
+			"<div id = 'baseDialog' class = 'base-dialog'>",
+			"</div>",
+		].join()
 		this.css = "\
 			.base-dialog{\
 				display: inline-block;\
@@ -45,14 +45,16 @@ void function(){
 		this.cssID = "BaseDialogStyle" //给style标签的id，同一种类型的dialog不需要重复的style标签。
 	}
 	
+	
+	
 	//dialog的实例。
 	var Dialog = function(option){
 		var baseDialog = new BaseDialog()
-		var dialog = $.el(baseDialog.template)
-		if(!$.id(baseDialog.cssID) || $.id(baseDialog.cssID).nodeName.toLowerCase() !== "style"){	
-			var style = $.el("style")
+		var dialog = $(baseDialog.template)
+		if(!$("#" + baseDialog.cssID).get(0) || $("#" + baseDialog.cssID).get(0).nodeName.toLowerCase() !== "style"){	
+			var style = $("style")
 			style.innerHTML += baseDialog.css
-			document.head.appendChild(style)
+//			document.body.appendChild(style)
 		}
 		
 		var content = option.content
@@ -63,7 +65,7 @@ void function(){
 		, onRemove = option.onRemove
 		, self = this
 			
-		dialog.appendChild(content)
+		dialog.append(content)
 		
 		this.show = function(){
 			dialog.style.display = "inline-block"
@@ -96,29 +98,32 @@ void function(){
 	}
 	
 	var defaultDialogOption = {
-		content: $.el("div"),
+		content: $("div"),
 		canMove: false,
 		canScale: false,
-		onShow: function(){}, //显示
-		onHide: function(){}, //隐藏
-		onRemove: function(){}, //去除
+		onShow: function(){}, 
+		onHide: function(){}, 
+		onRemove: function(){} 
 	}
 	
 	var DialogFactory = function(){
 		var createDialog = function(option){
 			option = $.extend(option, defaultDialogOption)
-			option.content = typeof(option.content) === "string" ? $.el(option.content) : option.content
+			option.content = typeof(option.content) === "string" ? $(option.content) : option.content
 			var dialog = new Dialog(option)
 			return dialog
 		}	
 		
 		return {
-			createDialog: createDialog,
+			createDialog: createDialog
 		}
 	}
 	
 	window.DialogFactory = DialogFactory()
 	return
+	
+
+	//////////////////////////////////////////////////////////////
 
     var FloatDetailedInfoDialog= function(parent){
         /*

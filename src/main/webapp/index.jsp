@@ -5,8 +5,7 @@
 	<meta charset="UTF-8">
 	<title>问答网站</title>
 	<head>
-		<script type="text/javascript" src = "./static/script/bower_components/jquery/dist/jquery.js"></script>
-		<script type="text/javascript" src = "./static/script/bower_components/js-cookie/src/js.cookie.js"></script>
+		<script type="text/javascript" src = "http://libs.baidu.com/jquery/1.7.1/jquery.min.js"></script>
 		<script type="text/javascript" src = "./static/script/index.js"></script>
 		<script type="text/javascript" src = "./static/script/dialog.js"></script>
 		<link rel="stylesheet" href="./static/css/index.css">
@@ -168,8 +167,4 @@
 			</div>
 		</div>
 	</body>
-	<script src = "./static/script/index.js"></script>
-	<script>
-		
-	</script>
 </html>

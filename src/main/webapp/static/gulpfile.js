@@ -1,11 +1,9 @@
 var gulp = require("gulp");
-var less = require("gulp-less");
 var path = require("path")
 
 gulp.task("watch" , function(){
-	gulp.watch("less/*.less" , function(){
-		gulp.src("less/*.less").pipe(less({
-      		paths: [ path.join(__dirname, 'less', 'includes') ]
-    	})).pipe(gulp.dest("css/"));
+	gulp.watch("script/*.js" , function(){
+		gulp.src("script/*.js").pipe(gulp.dest("D://JDA_work//JDA_Software//apache-tomcat-7.0.55//webapps//" +
+				"knowledge_forum//static//script//"));
 	})
 });
