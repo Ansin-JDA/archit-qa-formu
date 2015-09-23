@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
@@ -223,9 +224,9 @@ public class ForumServiceController {
 //// quetionDetail page
 
     
-	@RequestMapping(value = "/showquestiondetail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
+	@RequestMapping(value = "/showquestiondetail", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 
-	public ModelAndView showquestiondetail(HttpServletRequest request, @PathVariable("question_id") int question_id) {
+	public ModelAndView showquestiondetail(HttpServletRequest request, @RequestParam (value = "question_id") int question_id) {
 
 		ModelAndView container=new ModelAndView();
 		System.out.println("==========DEBUG: In showquestiondetail. =============");

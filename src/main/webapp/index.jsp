@@ -88,7 +88,7 @@
 									</li>
 								</ul>
 								<div class="content-wrapper">
-									<a href="./showquestiondetail/${question.questionid}" class="link"><p class = "content-title"><c:out value = "${question.qtitle}"/></p></a>
+									<a href="./showquestiondetail?question_id=${question.questionid}" class="link"><p class = "content-title"><c:out value = "${question.qtitle}"/></p></a>
 									<div class="content-status-wrapper">
 										<ul class="tag-wrapper">
 											<li class="tag">工程管理</li>
