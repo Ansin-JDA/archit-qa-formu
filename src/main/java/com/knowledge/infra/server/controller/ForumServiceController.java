@@ -225,7 +225,7 @@ public class ForumServiceController {
     
 	@RequestMapping(value = "/showquestiondetail/{question_id}", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 
-	public ModelAndView showquestiondetail(HttpServletRequest request, @PathVariable int question_id) {
+	public ModelAndView showquestiondetail(HttpServletRequest request, @PathVariable("question_id") int question_id) {
 
 		ModelAndView container=new ModelAndView();
 		System.out.println("==========DEBUG: In showquestiondetail. =============");
