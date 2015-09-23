@@ -67,9 +67,8 @@ void function(){
 		var baseDialog = new BaseDialog()
 		var $dialog = $(baseDialog.template)
 		if(!$("#" + baseDialog.cssID).get(0) || $("#" + baseDialog.cssID).get(0).nodeName.toLowerCase() !== "style"){	
-			var $style = $("<style></style>")
-			$style.get(0).innerHTML += baseDialog.css
-            $("head").append($style)
+	        var $style = $("<style>" + baseDialog.css + "</style>")
+            $(document.documentElement.childNodes[0]).append($style)
 		}
 		
 		var $content = $(option.content)
