@@ -8,7 +8,6 @@ h3,
 h4,
 h5,
 form,
-input,
 img {
   padding: 0px;
   margin: 0px;
@@ -174,7 +173,6 @@ input[type=submit] {
   font-size: 16px;
 }
 .navbar-link {
-  color: #fefefe;
   font-size: 14px;
   line-height: 35px;
   margin-left: 30px;
@@ -511,4 +509,35 @@ input[type=submit] {
   color: #009f40;
   font-size: 18px;
   margin: 0px;
+}
+.dialogContainer {
+  width: 600px;
+}
+.dialogTitle {
+  background-color: #6dba44;
+  height: 40px;
+}
+.dialogTitle span {
+  float: right;
+  color: white;
+}
+.dialogTitle .closeBtn {
+  cursor: pointer;
+}
+.dialogBody div {
+  text-align: center;
+}
+.dialogBody .registerSection {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 50%;
+  border-right: solid 1px #9f9fa0;
+}
+.dialogBody .loginSection {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 50%;
+  vertical-align: top;
 }
