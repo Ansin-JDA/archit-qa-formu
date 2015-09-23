@@ -25,39 +25,54 @@ void function(){
 	
 	var BaseDialog = function(){
 		this.template = [
+            "<div id = 'mask'>",
 			"<div id = 'baseDialog' class = 'base-dialog'>",
 			"</div>",
-		].join()
-		this.css = "\
-			.base-dialog{\
-				display: inline-block;\
-				background-color: white;\
-				overflow: hidden;\
-				padding: 20px;\
-				box-shadow: 3px 3px 3px 3px #b0b0b0;\
-				border-radius: 3px;\
-				*border-top: solid 1px #ddd;\
-				*border-left: solid 1px #ddd;\
-				*border-right: solid 2px #b0b0b0;\
-				*border-bottom: solid 2px #b0b0b0;\
-			}\
-		"
+            "</div>",
+		].join("")
+
+		this.css = [
+            "#mask{",
+                "position: fixed;",
+                "top: 0px;",
+                "left: 0px;",
+                "right: 0px;",
+                "bottom: 0px;",
+                "text-align: center;",
+                "background-color: rgba(0, 0, 0, 0.3)",
+            "}",
+			".base-dialog{",
+                "background-color: white;",
+                "position: relative;",
+                "margin-top: 20%;",
+				"display: inline-block;",
+				"background-color: white;",
+				"overflow: hidden;",
+				"padding: 20px;",
+				"box-shadow: 3px 3px 3px 3px #b0b0b0;",
+				"border-radius: 3px;",
+				"*border-top: solid 1px #ddd;",
+				"*border-left: solid 1px #ddd;",
+				"*border-right: solid 2px #b0b0b0;",
+				"*border-bottom: solid 2px #b0b0b0;",
+			"}"].join("")
+
 		this.cssID = "BaseDialogStyle" //给style标签的id，同一种类型的dialog不需要重复的style标签。
 	}
 	
 	
 	
 	//dialog的实例。
-	var Dialog = function(option){
+	var Dialog = function(option){        
 		var baseDialog = new BaseDialog()
-		var dialog = $(baseDialog.template)
+		var $dialog = $(baseDialog.template)
 		if(!$("#" + baseDialog.cssID).get(0) || $("#" + baseDialog.cssID).get(0).nodeName.toLowerCase() !== "style"){	
-			var style = $("style")
-			style.innerHTML += baseDialog.css
-//			document.body.appendChild(style)
+			var $style = $("<style></style>")
+			$style.get(0).innerHTML += baseDialog.css
+            $("head").append($style)
 		}
 		
-		var content = option.content
+		var $content = $(option.content)
 		, canMove = option.canMove
 		, canScale = option.canScale
 		, onShow = option.onShow
@@ -65,33 +80,33 @@ void function(){
 		, onRemove = option.onRemove
 		, self = this
 			
-		dialog.append(content)
+		$dialog.find(".base-dialog").append($content)
 		
 		this.show = function(){
-			dialog.style.display = "inline-block"
+            $dialog.css("display", "inline-block")
 			onShow() //show完call一下。
 		}
 		
 		this.hide = function(){
-			dialog.style.display = "none"
+            $dialog.css("display", "none")
 			onHide() //hide完call一下。
 		}
 		
 		this.append = function(parent){
-			if(!parent || !parent.appendChild){
+			if(!parent || !parent.append){
 				return self
 			}
-			parent.appendChild(dialog)
+			parent.append($dialog)
 			self.show()
 			return self
 		}
 		
 		this.remove = function(){
-			if(!dialog.parentNode){
+			if(!$dialog.parent()){
 				onRemove(false)
 				return self
 			}
-			dialog.parentNode.removeChild(dialog)
+			$dialog.remove()
 			onRemove() //remove完call一下
 			return self
 		}
@@ -108,7 +123,7 @@ void function(){
 	
 	var DialogFactory = function(){
 		var createDialog = function(option){
-			option = $.extend(option, defaultDialogOption)
+			option = $.extend(defaultDialogOption, option)
 			option.content = typeof(option.content) === "string" ? $(option.content) : option.content
 			var dialog = new Dialog(option)
 			return dialog

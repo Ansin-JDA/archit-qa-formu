@@ -167,3 +167,43 @@
 		margin: 0px;
 	}
 }
+
+.dialogContainer{
+	width: 600px;
+}
+
+.dialogTitle{
+	@titleHeight: 40px;
+	background-color: @darkgreen;
+	height: @titleHeight;
+
+	img{
+
+	}
+
+	span{
+		float: right;
+		color: white;
+	}
+
+	.closeBtn{
+		cursor: pointer;
+	}
+}
+
+.dialogBody{
+	@padding: 10px;
+	div{
+		text-align: center;
+	}
+	.registerSection{
+		.dis-inbl;
+		width: 50%;
+		border-right: solid 1px @darkgray;
+	}
+	.loginSection{
+		.dis-inbl;
+		width: 50%;
+		vertical-align: top;
+	}
+}
