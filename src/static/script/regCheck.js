@@ -15,7 +15,9 @@ function checkText(obj)
    //判断是否为空,用正则表达式，将所有的空格替换成""后，只剩下""（空字符）
    if(text.replace(/\s/g, "")=="")
    {
-      document.getElementById(id).innerHTML="输入不能为空";
+      //document.getElementById(id).innerHTML="输入不能为空";
+	   var errMsg = "输入不能为空";
+	   $("#id").html("<span>"+errMsg+"</span>");
    }
    else
    {
@@ -29,7 +31,9 @@ function checkText(obj)
      var isTrue = eval(strMethod);
      if(isTrue)
      {
-         document.getElementById(id).innerHTML="输入有效";
+         //document.getElementById(id).innerHTML="输入有效";
+  	     var msg = "输入有效";
+	     $("#id").html("<span>"+msg+"</span>");
      }
    }   
 }
@@ -42,7 +46,9 @@ function checkUsername()
     var username=id.value;    
     if(username.length > 10)
     {
-      document.getElementById(id.name).innerHTML = "输入的用户名过长";
+      //document.getElementById(id.name).innerHTML = "输入的用户名过长";
+ 	   var errMsg = "输入的用户名过长";
+	   $("#id").html("<span>"+errMsg+"</span>");
       return false;
     } 
     else
@@ -57,12 +63,16 @@ function checkPassword()
     var password = document.getElementById("PASSWORD").value;  
     if (password.length < 4)
     {
-        document.getElementById(id.name).innerHTML = "输入的密码过于简单";
+        //document.getElementById(id.name).innerHTML = "输入的密码过于简单";
+ 	   var errMsg = "输入的密码过于简单";
+	   $("#id").html("<span>"+errMsg+"</span>");
         return false;
     }
     else if (password > 20)
     {
-        document.getElementById(id.name).innerHTML = "输入的密码过长";
+        //document.getElementById(id.name).innerHTML = "输入的密码过长";
+ 	   var errMsg = "输入的密码过长";
+	   $("#id").html("<span>"+errMsg+"</span>");
         return false;    	
     }
     else
@@ -80,7 +90,9 @@ function checkPassword2()
      var password2 = id2.value;
      if(password!=password2)
      {
-        document.getElementById(id.name).innerHTML="密码不一致";
+        //document.getElementById(id.name).innerHTML="密码不一致";
+  	   var errMsg = "密码不一致";
+	   $("#id").html("<span>"+errMsg+"</span>");
         return false;
      }
      return true;    
@@ -93,13 +105,17 @@ function checkIDNumber()
   var IDNumber =id.value;
   if(IDNumber.length<18||IDNumber.length>19)
   {
-    document.getElementById(id.name).innerHTML="身份证号长度有误";
+    //document.getElementById(id.name).innerHTML="身份证号长度有误";
+	var errMsg = "身份证号长度有误";
+	$("#id").html("<span>"+errMsg+"</span>");
     return false;
   }
   var expr=/([0]{18}[x|y]?)|([1]{18}[x|y]?)/i;
   if(expr.test(IDNumber))
   {
-     document.getElementById(id.name).innerHTML="身份证号不可以全'0'或全'1'";
+     //document.getElementById(id.name).innerHTML="身份证号不可以全'0'或全'1'";
+	 var errMsg = "身份证号不可以全'0'或全'1'";
+	 $("#id").html("<span>"+errMsg+"</span>");
      return false;
   }
   return true;
@@ -115,7 +131,9 @@ function checkPhoneNumber()
    var expr =  /\D/i;
    if(expr.test(phone))
    {
-      document.getElementById(id.name).innerHTML="不能输入非数字字符";
+      //document.getElementById(id.name).innerHTML="不能输入非数字字符";
+	  var errMsg = "不能输入非数字字符";
+	  $("#id").html("<span>"+errMsg+"</span>");
       return false;
    }
    return true;
@@ -131,7 +149,9 @@ function checkEmail()
    var expr =  /^([0-9]|[a-z])+@([0-9]|[a-z])+(\.[c][o][m])$/i;
    if(!expr.test(email))
    {
-      document.getElementById(id.name).innerHTML="输入的邮箱格式有误";
+      //document.getElementById(id.name).innerHTML="输入的邮箱格式有误";
+	  var errMsg = "输入的邮箱格式有误";
+	  $("#id").html("<span>"+errMsg+"</span>");
       return false;
    }
    return true;
