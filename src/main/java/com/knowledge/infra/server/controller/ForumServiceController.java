@@ -8,8 +8,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.knowledge.infra.server.controller.vo.GetServerResp;
-import com.knowledge.infra.server.dao.UserDao;
 import com.knowledge.infra.server.model.Answer;
 import com.knowledge.infra.server.model.Question;
 import com.knowledge.infra.server.model.User;
@@ -34,6 +32,8 @@ import com.knowledge.infra.server.util.JacksonUtils;
 @RestController
 public class ForumServiceController {
 
+	Logger logger = Logger.getLogger(ForumServiceController.class);
+	
 	@Autowired
 	private UserService userService;
 
@@ -50,14 +50,19 @@ public class ForumServiceController {
 	@ExceptionHandler
 	public String handleException(Exception e) {
 
-		return null;
+	     logger.error("Error Occurs: ", e);
+	     GetServerResp resp = new GetServerResp();
+	     resp.setCode(400);
+	     resp.setData(e);
+	     resp.setMsg(ExceptionUtils.getStackTrace(e));
+	     return JacksonUtils.toJson(resp);
 	}
 
 	@RequestMapping(value = "/forum_service/Register", method = RequestMethod.POST, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
 	public String register(HttpServletRequest request) {
 
-		 User user = JacksonUtils.fromJson(request.getParameter("user"),User.class);
+		User user = JacksonUtils.fromJson(request.getParameter("user"),User.class);
 		Map<String, Object> m = new HashMap<String, Object>(1);
 		m.put("uname", user.getUname());
 		GetServerResp resp = new GetServerResp();
