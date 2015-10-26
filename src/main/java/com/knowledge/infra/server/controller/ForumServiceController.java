@@ -1,5 +1,7 @@
 package com.knowledge.infra.server.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -196,18 +198,21 @@ public class ForumServiceController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	@ResponseBody
-	public ModelAndView getQuestionsByLastId(HttpServletRequest request) {
+	public ModelAndView getQuestionsByLastId(HttpServletRequest request) throws ParseException {
 		
 		ModelAndView container=new ModelAndView();
-		List<Question> questions = this.questionService.getMoreQuestionsbyLastId(lastQuestionId, lastQuestiontime, pageLen); 
+		Integer lastid=null;
+		if(request.getParameter("lastId")!=null ){
+		  lastid =Integer.parseInt(request.getParameter("lastId"));
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		Date   lasttime=null;
+		if(request.getParameter("lastTime")!=null){
+			lasttime= sdf.parse(request.getParameter("lastTime"));
+		}
+		 
+		List<Question> questions = this.questionService.getMoreQuestionsbyLastId(lastid, lasttime, pageLen); 
 		container.addObject("questionList", questions);
-		lastQuestionId = questions.get(questions.size()-1).getQuestionid();
-		lastQuestiontime = questions.get(questions.size()-1).getQupdatetime();
-		System.out.println("==========DEBUG: In getQuestionsByLastId. =============");
-		System.out.println(lastQuestionId);
-		System.out.println(lastQuestiontime);
-		System.out.println(questions.size());
-		System.out.println("==========DEBUG END: In getQuestionsByLastId. =============");
 		return container;
 	}
 	
@@ -223,7 +228,6 @@ public class ForumServiceController {
 		return container ;
 
 	}
-	///	
     
 	
 //// quetionDetail page
@@ -233,25 +237,11 @@ public class ForumServiceController {
 
 	public ModelAndView showquestiondetail(HttpServletRequest request, @RequestParam (value = "question_id") int question_id) {
 
-		ModelAndView container=new ModelAndView();
-		System.out.println("==========DEBUG: In showquestiondetail. =============");
-		System.out.println(question_id);
+		ModelAndView container=new ModelAndView("question_page");//maybe we need a question page
 		Question question=this.questionService.getQuestionbyId(question_id);
-		System.out.println(question);
-		System.out.println(question.getQuestionid());
-		System.out.println(question.getQtitle());
-		System.out.println(question.getQcontent());
-		System.out.println("==========DEBUG END: In showquestiondetail. =============");
-		if(question == null)
-		{
-			return null;
-		}
 		container.addObject("question", question);
 		return container;
 	}
-
-////search page ???
-
     
 	@RequestMapping(value = "/search_question", method = RequestMethod.GET, produces = { "text/javascript;charset=UTF-8" })
 	public ModelAndView searchQuestion(HttpServletRequest request) {

@@ -23,6 +23,26 @@
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	
+
+       
+      <mvc:interceptor>  
+        <mvc:mapping path="/*/*"/>  
+        <bean class="com.knowledge.infra.server.controller.interceptor.SessionInterceptor">  
+          <property name="allowUrls">  
+            <list>  
+                
+              <value>/login</value>  
+              <value>/js</value>  
+              <value>/css</value>  
+              <value>/image</value>  
+              <value>/images</value>  
+            </list>  
+          </property>  
+        </bean>  
+      </mvc:interceptor>  
+    </mvc:interceptors>  
 
 	<mvc:resources mapping="/javascript/**" location="/javascript/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
